@@ -27,5 +27,14 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         cache: maven
+
+    - name: Install ChromeDriver
+      run: |
+        wget https://storage.googleapis.com/chrome-for-testing-public/122.0.6261.111/linux64/chromedriver-linux64.zip
+        unzip chromedriver-linux64.zip
+        cd chromedriver-linux64
+        chmod +x chromedriver
+        sudo mv chromedriver /usr/local/bin
+        
     - name: Build with Maven
       run: mvn -B package --file pom.xml
