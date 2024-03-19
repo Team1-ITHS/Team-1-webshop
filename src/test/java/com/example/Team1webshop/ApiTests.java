@@ -1,27 +1,20 @@
 package com.example.Team1webshop;
 
-import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
+
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.Arrays;
-import java.util.List;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasItems;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import static io.restassured.RestAssured.*;
-
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
 public class ApiTests {
+
+    private Response response; // Deklarerar response som en privat instansvariabel
 
     // Samuel
     @Test
@@ -35,12 +28,7 @@ public class ApiTests {
                         "jewelery",
                         "men's clothing",
                         "women's clothing"));
-        //new branch
-
     }
-
-
-    private Response response; // Deklarerar response som en privat instansvariabel
 
     @Test //Mia
     public void Test_Womens_Endpoint_With_Valid_StatusCode() {
@@ -49,7 +37,6 @@ public class ApiTests {
         int expectedStatusCode = 200; // the expected statuscode
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); // compare the expected value with the actual value
     }
-
 
     @Test //Mia
     public void Test_Womens_Endpoint_With_Correct_Products() {
@@ -83,7 +70,6 @@ public class ApiTests {
                 then().statusCode(200).body("[0].price", equalTo(56.99F)); //test just the price of the first product
     }
 
-
     @Test //Mia
     public void Test_Mens_Endpoint_With_Valid_StatusCode() {
         response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/men's%20clothing").when().get();
@@ -101,7 +87,6 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
     }
 
-
     @Test //Mia
     public void Test_Mens_Endpoint_With_Correct_Products() {
         String[] expectedTitles = {
@@ -110,7 +95,6 @@ public class ApiTests {
                 "Mens Cotton Jacket",
                 "Mens Casual Slim Fit"
         };
-
 
         given()
                 .baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com")
@@ -139,7 +123,6 @@ public class ApiTests {
         given().
                 get("/products/categories/electronics").
                 then().statusCode(200).body("$", hasSize(greaterThan(0)));
-
     }
 
     // Samuel
