@@ -1,12 +1,12 @@
 package com.example.Team1webshop;
 
+import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -170,5 +170,39 @@ public class ApiTests {
         given().
                 get("/products/categories/electronics").
                 then().statusCode(200).body("[2].id", equalTo(11));
+    }
+
+    //divya
+    @Test
+    @DisplayName("Check endpoint status code of Jewelry category and make sure it is not empty")
+    public void webShopJewelryCategoryValidURL() {
+        response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/jewelery").when().get(); //do a get with the URL end point
+        int actualStatusCode = response.getStatusCode();   // get the actual status code from that
+        int expectedStatusCode = 200; // Declare the expected status code,  200, successful
+        Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
+    }
+
+    //divya
+    @Test
+    @DisplayName("Check endpoint status code of Jewelry category with wrong URL")
+    public void webShopJewelryCategoryInvalidURL() {
+        response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/jewelery/1").when().get(); //do a get with the wrong URL end point
+        int actualStatusCode = response.getStatusCode();   // get the actual status code from that
+        int expectedStatusCode = 404; // Declare the expected status code,  404, not found
+        Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
+    }
+
+
+    //divya
+    @Test
+    @DisplayName("Check response from the endpoint of Jewelry category")
+    public void JewelryCategoryResponse() {
+        response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/jewelery").when().get(); //do a get with the wrong URL end point
+        String actualJson = response.getBody().asString();// get the actual status code from that
+        String expectedJson = "[{\"id\":5,\"title\":\"John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet\",\"price\":695.0,\"category\":\"jewelery\",\"description\":\"Silver drakens återkomst. Ett måste om man vill ha den!\",\"image\":\"https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg\"}," +
+                                    "{\"id\":6,\"title\":\"SolGold Petite Micropave\",\"price\":168.0,\"category\":\"jewelery\",\"description\":\"Denna blir man glad av.\",\"image\":\"https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg\"}," +
+                                    "{\"id\":7,\"title\":\"White Gold Plated Princess\",\"price\":9.99,\"category\":\"jewelery\",\"description\":\"Prinsessans bästa vän. Köp för att få den i din ägo\",\"image\":\"https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg\"}," +
+                                    "{\"id\":8,\"title\":\"Pierced Owl Rose Gold Plated Stainless Steel Double\",\"price\":10.99,\"category\":\"jewelery\",\"description\":\"Något med en uggla, och i guld och lite dubbel stål\",\"image\":\"https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg\"}]";
+        Assertions.assertEquals(expectedJson, actualJson); //compare the actual with expected
     }
 }
