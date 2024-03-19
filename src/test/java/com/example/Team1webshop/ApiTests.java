@@ -197,8 +197,8 @@ public class ApiTests {
     @Test
     @DisplayName("Check response from the endpoint of Jewelry category")
     public void JewelryCategoryResponse() {
-        response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/jewelery").when().get(); //do a get with the wrong URL end point
-        String actualJson = response.getBody().asString();// get the actual status code from that
+        response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/jewelery").when().get(); //do a get with the URL end point
+        String actualJson = response.getBody().asString();// get the actual response Json data
         String expectedJson = "[{\"id\":5,\"title\":\"John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet\",\"price\":695.0,\"category\":\"jewelery\",\"description\":\"Silver drakens återkomst. Ett måste om man vill ha den!\",\"image\":\"https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg\"}," +
                                     "{\"id\":6,\"title\":\"SolGold Petite Micropave\",\"price\":168.0,\"category\":\"jewelery\",\"description\":\"Denna blir man glad av.\",\"image\":\"https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg\"}," +
                                     "{\"id\":7,\"title\":\"White Gold Plated Princess\",\"price\":9.99,\"category\":\"jewelery\",\"description\":\"Prinsessans bästa vän. Köp för att få den i din ägo\",\"image\":\"https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg\"}," +
