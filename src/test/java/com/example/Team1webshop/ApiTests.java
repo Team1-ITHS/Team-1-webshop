@@ -1,6 +1,5 @@
 package com.example.Team1webshop;
 
-
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,12 +21,12 @@ public class ApiTests {
     public void webShopCategories() {
         baseURI = "https://produktapi-6ef53ba8f2f2.herokuapp.com";
         given().
-                get("/products/categories").
-                then().statusCode(200).body("", hasItems(
-                        "electronics",
-                        "jewelery",
-                        "men's clothing",
-                        "women's clothing"));
+            get("/products/categories").
+        then().statusCode(200).body("", hasItems(
+            "electronics",
+            "jewelery",
+            "men's clothing",
+            "women's clothing"));
     }
 
     @Test //Mia
@@ -188,4 +187,23 @@ public class ApiTests {
                                     "{\"id\":8,\"title\":\"Pierced Owl Rose Gold Plated Stainless Steel Double\",\"price\":10.99,\"category\":\"jewelery\",\"description\":\"Något med en uggla, och i guld och lite dubbel stål\",\"image\":\"https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg\"}]";
         Assertions.assertEquals(expectedJson, actualJson); //compare the actual with expected
     }
+
+    // Samuel
+    @Test
+    @DisplayName("Verify data of a product in the  category with specific id")
+    public void webShopElectronicsProductData() {
+        baseURI = "https://produktapi-6ef53ba8f2f2.herokuapp.com";
+        String productId = "14"; // 1 - 20
+        given()
+            .pathParam("id", productId)
+        .when()
+            .get("/products/{id}")
+        .then().statusCode(200)
+            .body("title", equalTo("Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED"))
+            .body("price", equalTo(999.99F))
+            .body("category", equalTo("electronics"))
+            .body("description", equalTo("En lite böjd skär Men den funkar ändå!"))
+            .body("image", equalTo("https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg"));
+    }
+
 }
