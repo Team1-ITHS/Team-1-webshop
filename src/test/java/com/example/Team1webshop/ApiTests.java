@@ -1,5 +1,6 @@
 package com.example.Team1webshop;
 
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import static org.hamcrest.Matchers.hasItems;
 
 @SpringBootTest
 public class ApiTests {
+    private Response response; // Deklarerar response som en privat instansvariabelgit
 
     // Samuel
     @Test
