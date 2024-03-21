@@ -6,8 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
@@ -136,7 +134,7 @@ public class ApiTests {
     }
     //Semih
     @Test
-    @DisplayName("Check endpoint status code of 'products' and number produgit adcts")
+    @DisplayName("Check endpoint status code of 'products' and number products")
     public void webShopProductsURL() {
         given()
                 .baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com")
