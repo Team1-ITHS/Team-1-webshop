@@ -1,5 +1,13 @@
 
 Feature:home Page
-  Scenario:landing home page
-    When the user navigates to valid url
-    Then the page title should be Webbutiken
+
+   Background: testing
+     Given I am on the Webbutiken website
+
+   Scenario:I click on Shop button
+    When I click on the shop Button from Webbutiken
+    Then I should be navigated to Shop page
+
+   Scenario:I filter products by mens clothing
+     When I click on the mens clothing from shop page
+     Then Only mens clothing must be visible
