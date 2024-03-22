@@ -1,6 +1,6 @@
-Feature:home Page
+Feature:shopPage
 
-  Background: testing
+  Background: I am on the Webbutiken website
     Given I am on the Webbutiken website
 
   Scenario:I click on Shop button
