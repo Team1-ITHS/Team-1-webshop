@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 public class ShopPageStepDefs {
     static WebDriver driver;
@@ -24,10 +25,10 @@ public class ShopPageStepDefs {
         driver.manage().window().maximize();
     }
 
-    @After
-    public void tearDown(){
-        driver.quit();
-    }
+//    @After
+//    public void tearDown(){
+//        driver.quit();
+//    }
 
     @When("I click on the shop Button from Webbutiken") //divya
     public void I_click_on_the_shop_Button_from_Webbutiken() {
@@ -45,7 +46,7 @@ public class ShopPageStepDefs {
     public void i_click_on_the_mens_clothing_from_shop_page() {
         WebElement shopButton = driver.findElement(By.xpath("/html//header//ul//a[@href='/products']"));
         shopButton.click();
-        WebElement filterMensClothing = driver.findElement(By.xpath("/html//div[@class='container mt-5']//ul/li[2]/a[@href='#']"));
+        WebElement filterMensClothing = driver.findElement(By.linkText("Men's clothing"));
         filterMensClothing.click();
     }
 
@@ -53,8 +54,10 @@ public class ShopPageStepDefs {
     public void only_mens_clothing_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        boolean expected_products = mens_clothing.isDisplayed();
-        Assertions.assertTrue(expected_products);
+        List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
+        int numberOfElements = mens_product.size();
+        System.out.println(numberOfElements);
+        Assertions.assertEquals(4, numberOfElements);
     }
 
 }
