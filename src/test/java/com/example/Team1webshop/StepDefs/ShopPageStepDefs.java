@@ -46,7 +46,7 @@ public class ShopPageStepDefs {
     public void i_click_on_the_mens_clothing_from_shop_page() {
         WebElement shopButton = driver.findElement(By.xpath("/html//header//ul//a[@href='/products']"));
         shopButton.click();
-        WebElement filterMensClothing = driver.findElement(By.linkText("Men's clothing"));
+        WebElement filterMensClothing = driver.findElement(By.xpath("/html//div[@class='container mt-5']//ul/li[2]/a[@href='#']"));
         filterMensClothing.click();
     }
 
