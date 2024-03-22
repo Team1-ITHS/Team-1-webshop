@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ShopPageStepDefs {
     static WebDriver driver;
 
@@ -24,6 +26,7 @@ public class ShopPageStepDefs {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         driver.manage().window().maximize();
     }
+
 
     @After
     public void tearDown(){
@@ -42,6 +45,7 @@ public class ShopPageStepDefs {
         String navigated_url = driver.getCurrentUrl();
         Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/products",navigated_url);
     }
+
 
 
     @When("I click on the mens clothing from shop page") //divya
@@ -63,3 +67,6 @@ public class ShopPageStepDefs {
     }
 
 }
+
+
+

@@ -11,3 +11,4 @@ Feature: Test cases for shop page
     When I click on the mens clothing from shop page
     Then Only mens clothing products must be visible
 
+
