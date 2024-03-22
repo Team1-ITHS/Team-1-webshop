@@ -25,10 +25,12 @@ public class ShopPageStepDefs {
         driver.manage().window().maximize();
     }
 
-//    @After
-//    public void tearDown(){
-//        driver.quit();
-//    }
+    @After
+    public void tearDown(){
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     @When("I click on the shop Button from Webbutiken") //divya
     public void I_click_on_the_shop_Button_from_Webbutiken() {
@@ -43,10 +45,11 @@ public class ShopPageStepDefs {
 
 
     @When("I click on the mens clothing from shop page") //divya
-    public void i_click_on_the_mens_clothing_from_shop_page() {
+    public void i_click_on_the_mens_clothing_from_shop_page() throws InterruptedException {
         WebElement shopButton = driver.findElement(By.xpath("/html//header//ul//a[@href='/products']"));
         shopButton.click();
-        WebElement filterMensClothing = driver.findElement(By.xpath("/html//div[@class='container mt-5']//ul/li[2]/a[@href='#']"));
+        Thread.sleep(2000);
+        WebElement filterMensClothing = driver.findElement(By.partialLinkText("Men's clothing"));
         filterMensClothing.click();
     }
 
@@ -56,7 +59,6 @@ public class ShopPageStepDefs {
         WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
         List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
         int numberOfElements = mens_product.size();
-        System.out.println(numberOfElements);
         Assertions.assertEquals(4, numberOfElements);
     }
 
