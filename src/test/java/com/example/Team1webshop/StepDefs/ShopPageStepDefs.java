@@ -2,25 +2,22 @@ package com.example.Team1webshop.StepDefs;
 
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class ShopPageStepDefs {
 
     static WebDriver driver;
 
-    @Given("I am on the Webbutiken website")
+    @Before
+    @Given("User has navigated to the shop page")
     public void setup(){
         driver = new ChromeDriver();
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
@@ -28,16 +25,8 @@ public class ShopPageStepDefs {
     }
 
     @After
-    public void tearDown () {
-        if (driver != null) {
-            try {
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
-            } catch (TimeoutException e) {
-                System.out.println("Timeout waiting for page to load.");
-            }
-            driver.quit();
-        }
+    public void tearDown(){
+        driver.quit();
     }
 
     @When("I click on the shop Button from Webbutiken")

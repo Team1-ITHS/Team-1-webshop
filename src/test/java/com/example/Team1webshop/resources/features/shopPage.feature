@@ -1,7 +1,7 @@
-Feature:shopPage
+Feature: Test cases for shop page
 
-  Background: I am on the Webbutiken website
-    Given I am on the Webbutiken website
+  Background: The user is on the shop page
+    Given User has navigated to the shop page
 
   Scenario:I click on Shop button
     When I click on the shop Button from Webbutiken
