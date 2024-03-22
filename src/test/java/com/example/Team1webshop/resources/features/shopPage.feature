@@ -9,4 +9,5 @@ Feature: Test cases for shop page
 
   Scenario:I filter products by mens clothing
     When I click on the mens clothing from shop page
-    Then Only mens clothing must be visible
+    Then Only mens clothing products must be visible
+
