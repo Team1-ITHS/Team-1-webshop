@@ -1,4 +1,4 @@
-package com.example.Team1webshop.StepDefs;
+package com.example.Team1webshop.StepDefsTests;
 
 
 import io.cucumber.java.After;
