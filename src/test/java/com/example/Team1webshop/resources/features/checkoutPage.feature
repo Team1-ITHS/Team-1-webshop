@@ -14,3 +14,13 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
     And User navigates to the checkout page
     And User removes 1 item
     Then The item count in the shopping cart should decrease by 1
+
+    #Samuel
+  Scenario Outline: User should see same product on checkout page as was added from the shop page
+    Given User has navigated to the product page
+    When User adds a specific product to the cart <addedProduct>
+    And User has navigated to the checkout page
+    Then User should see same product on checkout page <actualProduct>
+    Examples:
+      | addedProduct           | actualProduct          |
+      | "Mens Casual Slim Fit" | "Mens Casual Slim Fit" |
