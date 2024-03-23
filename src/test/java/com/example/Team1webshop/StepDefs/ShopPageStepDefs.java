@@ -20,20 +20,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ShopPageStepDefs {
     static WebDriver driver;
 
-    @Given("User has navigated to the shop page") //divya
-    public void setup(){
-        driver = new ChromeDriver();
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
-        driver.manage().window().maximize();
-    }
+//    @Given("User has navigated to the shop page") //divya
+//    public void setup(){
+//        driver = new ChromeDriver();
+//        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+//        driver.manage().window().maximize();
+//    }
 
 
-    @After
-    public void tearDown(){
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+//    @After
+//    public void tearDown(){
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 
     @When("I click on the shop Button from Webbutiken") //divya
     public void I_click_on_the_shop_Button_from_Webbutiken() {

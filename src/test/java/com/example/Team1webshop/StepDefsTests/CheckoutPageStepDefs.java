@@ -10,10 +10,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.After;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CheckoutPageStepDefs {
@@ -23,8 +26,11 @@ public class CheckoutPageStepDefs {
 
     @Before
     public void setup() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize(); // Maximize browser window
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");    // Open browser in incognito mode
+        options.addArguments("--start-maximized");  // Open browser maximized
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
     }
 
@@ -34,15 +40,14 @@ public class CheckoutPageStepDefs {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 
-    @Then("the pagess title should be {string}")
-    public void the_pagess_title_should_be(String expectedTitle) {
-        Assertions.assertEquals(expectedTitle, driver.getTitle());
-    }
-
+//    @Then("the pages title should be {string}")
+//    public void the_pages_title_should_be(String expectedTitle) {
+//        Assertions.assertEquals(expectedTitle, driver.getTitle());
+//    }
 
     //Mia
     @Given("User has navigated to the product page")
-    public void user_has_navigated_to_the_product_page() {
+    public void user_has_navigated_to_the_product_page() throws InterruptedException {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
@@ -85,11 +90,15 @@ public class CheckoutPageStepDefs {
 
     // Samuel
     @Then("User should see same product on checkout page {string}")
-    public void user_should_see_same_product_on_checkout_page(String actualProduct) {
+    public void user_should_see_same_product_on_checkout_page(String addedProduct) {
+        WebElement productElement = driver.findElement(By.xpath("//ul[@id='cartList']//h6"));
+        String productText = productElement.getText();
+        Assertions.assertEquals(addedProduct, productText);
     }
 
     @After
     public void tearDown() {
-        driver.quit();
+        if (driver != null)
+            driver.quit();
     }
 }

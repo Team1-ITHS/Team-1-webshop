@@ -19,10 +19,6 @@ public class CheckoutPageFormStepDefs {
 
     @Before
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito", "--start-maximized");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Given("user is on the products page")

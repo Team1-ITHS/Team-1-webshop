@@ -1,12 +1,6 @@
 Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
   This feature includes tests to verify functionality of the checkout page
 
-  Background: The user is on the checkout page
-    Given User has navigated to the checkout page
-
-  Scenario: pagess title test
-    Then the pagess title should be "Webbutiken"
-
     #Mia
   Scenario: Remove an item from the shopping cart
     Given User has navigated to the product page
@@ -22,5 +16,8 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
     And User has navigated to the checkout page
     Then User should see same product on checkout page <actualProduct>
     Examples:
-      | addedProduct           | actualProduct          |
-      | "Mens Casual Slim Fit" | "Mens Casual Slim Fit" |
+      | addedProduct                                                            | actualProduct                                                          |
+      | "Mens Casual Slim Fit"                                                  | "Mens Casual Slim Fit"                                                 |
+      | "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket" | "Lock and Love Womens Removable Hooded Faux Leather Moto Biker Jacket" |
+      | "Pierced Owl Rose Gold Plated Stainless Steel Double"                   | "Pierced Owl Rose Gold Plated Stainless Steel Double"                  |
+      | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                   | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                  |
