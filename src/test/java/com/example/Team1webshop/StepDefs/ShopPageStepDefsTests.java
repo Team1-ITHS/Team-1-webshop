@@ -15,9 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class ShopPageStepDefs {
+public class ShopPageStepDefsTests {
     static WebDriver driver;
 
     @Given("The user clicks on the shop page") //divya
