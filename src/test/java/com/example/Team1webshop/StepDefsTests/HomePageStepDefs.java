@@ -32,6 +32,7 @@ public class HomePageStepDefs {
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
+
     @Then("the user should be redirected to {string}") //Mia
     public void the_user_should_be_redirected_to(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
@@ -52,9 +53,8 @@ public class HomePageStepDefs {
     }
 
     @After
-    public void tearDown(){
-        driver.quit();
+    public void tearDown() {
+        if (driver != null)
+            driver.quit();
     }
-
-
 }
