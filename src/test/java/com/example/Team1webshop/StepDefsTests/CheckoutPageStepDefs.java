@@ -34,16 +34,11 @@ public class CheckoutPageStepDefs {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
     }
 
-    //Mia
     @Given("User has navigated to the checkout page")
     public void user_has_navigated_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 
-//    @Then("the pages title should be {string}")
-//    public void the_pages_title_should_be(String expectedTitle) {
-//        Assertions.assertEquals(expectedTitle, driver.getTitle());
-//    }
 
     //Mia
     @Given("User has navigated to the product page")
@@ -72,8 +67,38 @@ public class CheckoutPageStepDefs {
     public void the_item_count_in_the_shopping_cart_should_decrease_by_1() {
         WebElement itemCountElement = driver.findElement(By.id("cartSize"));
         int updatedItemCount = Integer.parseInt(itemCountElement.getText());
-        Assertions.assertEquals(0, updatedItemCount, "Item count in the shopping cart did not decrease by 1");
+        Assertions.assertEquals(0, updatedItemCount);
     }
+    //---------------------------------
+
+    @Given("Users has navigated to the product page")
+    public void users_has_navigated_to_the_product_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
+    }
+
+    @When("User clicks on the {string} button {int} times")
+    public void user_clicks_on_the_button_multiple_times(String buttonLabel, int times) {
+        for (int i = 0; i < times; i++) {
+            WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(), '" + buttonLabel + "')]")));
+            addButton.click();
+        }
+    }
+
+
+    @When("Users navigates to the checkout page")
+    public void users_navigates_to_the_checkout_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
+    }
+
+    @Then("The item count in the shopping cart should be {int}")
+    public void the_item_count_in_the_shopping_cart_should_be(int expectedItemCount) {
+        WebElement itemCountElement = driver.findElement(By.id("cartSize"));
+        int updatedItemCount = Integer.parseInt(itemCountElement.getText());
+        Assertions.assertEquals(expectedItemCount, updatedItemCount);
+    }
+
+
+ 
 
     // Samuel
     @When("User adds a specific product to the cart {string}")
@@ -100,5 +125,6 @@ public class CheckoutPageStepDefs {
     public void tearDown() {
         if (driver != null)
             driver.quit();
+
     }
 }
