@@ -23,3 +23,8 @@ Feature: Test cases for shop page
   Scenario:I remove the filter
     When I click on the all from shop page
     Then Only all products must be visible
+
+    #Samuel
+  Scenario: When user adds X amount of products to the cart the total amount inside checkout button should increase
+    When adding 3 products to the cart
+    Then number of products in the cart should be 3
