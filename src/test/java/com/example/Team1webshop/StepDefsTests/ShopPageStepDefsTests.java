@@ -1,6 +1,5 @@
 package com.example.Team1webshop.StepDefsTests;
 
-
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

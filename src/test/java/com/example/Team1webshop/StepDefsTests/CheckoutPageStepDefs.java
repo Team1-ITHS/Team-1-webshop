@@ -10,39 +10,39 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.After;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
+import java.time.Duration;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CheckoutPageStepDefs {
 
-
     static WebDriver driver;
     WebDriverWait wait;
 
     @Before
-    public void setup(){
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(1)); // Ange väntetiden här
+    public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");    // Open browser in incognito mode
+        options.addArguments("--start-maximized");  // Open browser maximized
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
     }
-    //---------------------------------
-//Mia
+
     @Given("User has navigated to the checkout page")
     public void user_has_navigated_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
-    @Then("the pagess title should be {string}")
-    public void the_pagess_title_should_be(String expectedTitle) {
-        Assertions.assertEquals(expectedTitle, driver.getTitle());
-    }
 
-    //---------------------------------
+
     //Mia
     @Given("User has navigated to the product page")
-    public void user_has_navigated_to_the_product_page() {
+    public void user_has_navigated_to_the_product_page() throws InterruptedException {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
@@ -84,6 +84,7 @@ public class CheckoutPageStepDefs {
         }
     }
 
+
     @When("Users navigates to the checkout page")
     public void users_navigates_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
@@ -95,12 +96,35 @@ public class CheckoutPageStepDefs {
         int updatedItemCount = Integer.parseInt(itemCountElement.getText());
         Assertions.assertEquals(expectedItemCount, updatedItemCount);
     }
-    //---------------------------------
+
+
+ 
+
+    // Samuel
+    @When("User adds a specific product to the cart {string}")
+    public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
+        List<WebElement> productCards = driver.findElements(By.className("card-body"));
+        for (WebElement productCard : productCards) {
+            WebElement productTitleElement = productCard.findElement(By.className("card-title"));
+            String productTitle = productTitleElement.getText();
+            if (productTitle.equals(addedProduct)) {
+                productCard.findElement(By.className("btn-primary")).click();
+            }
+        }
+    }
+
+    // Samuel
+    @Then("User should see same product on checkout page {string}")
+    public void user_should_see_same_product_on_checkout_page(String addedProduct) {
+        WebElement productElement = driver.findElement(By.xpath("//ul[@id='cartList']//h6"));
+        String productText = productElement.getText();
+        Assertions.assertEquals(addedProduct, productText);
+    }
 
     @After
-    public void tearDown(){
-        if (driver != null) {
+    public void tearDown() {
+        if (driver != null)
             driver.quit();
-        }
+
     }
 }
