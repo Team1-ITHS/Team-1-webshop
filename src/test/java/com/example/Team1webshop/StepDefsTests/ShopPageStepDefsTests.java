@@ -1,6 +1,7 @@
 package com.example.Team1webshop.StepDefsTests;
 
 import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -56,7 +57,7 @@ public class ShopPageStepDefsTests {
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("I click on the womens clothing from shop page")
+    @When("I click on the womens clothing from shop page")//divya
     public void i_click_on_the_womens_clothing_from_shop_page() {
         WebElement filterWomensClothing = driver.findElement(By.partialLinkText("Women's clothing"));
         filterWomensClothing.click();
@@ -70,7 +71,7 @@ public class ShopPageStepDefsTests {
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("I click on the jewelery from shop page")
+    @When("I click on the jewelery from shop page")//divya
     public void i_click_on_the_jewelery_from_shop_page() {
         WebElement filterjewelery = driver.findElement(By.partialLinkText("Jewelery"));
         filterjewelery.click();
@@ -84,7 +85,7 @@ public class ShopPageStepDefsTests {
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("I click on the electronics from shop page")
+    @When("I click on the electronics from shop page")//divya
     public void i_click_on_the_electronics_from_shop_page() {
         WebElement filterelectronics = driver.findElement(By.partialLinkText("Electronics"));
         filterelectronics.click();
@@ -98,7 +99,7 @@ public class ShopPageStepDefsTests {
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("I click on the all from shop page")
+    @When("I click on the all from shop page")//divya
     public void i_click_on_the_all_from_shop_page() {
         WebElement filterelectronics = driver.findElement(By.partialLinkText("All"));
         filterelectronics.click();
@@ -111,6 +112,33 @@ public class ShopPageStepDefsTests {
         int numberOfElements = mens_product.size();
         Assertions.assertEquals(20, numberOfElements);
     }
+
+    @When("I enter a {string} in the search field")//divya
+    public void i_enter_a_in_the_search_field(String string) {
+        WebElement searchField = driver.findElement(By.id("search"));
+        searchField.sendKeys("Mens Casual");
+    }
+
+    @Then("Relevant results are displayed")
+    public void relevant_results_are_displayed() {
+        List<WebElement> searchResults = driver.findElements(By.className("card-body"));
+        Assertions.assertTrue((int) searchResults.size() > 0);
+    }
+
+    @And("Results contain the keyword {string}")
+    public void results_contain_the_keyword(String string) {
+        List<WebElement> searchResults = driver.findElements(By.className("card-body"));
+        boolean keywordFound = false;
+        for (WebElement result : searchResults) {
+            if (result.getText().contains("Mens Casual")) {
+                keywordFound = true;
+                break;
+            }
+        }
+        Assertions.assertTrue(keywordFound);
+    }
+
+
 
 }
 

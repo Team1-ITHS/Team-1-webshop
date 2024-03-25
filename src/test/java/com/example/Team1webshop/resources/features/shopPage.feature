@@ -23,3 +23,8 @@ Feature: Test cases for shop page
   Scenario:I remove the filter
     When I click on the all from shop page
     Then Only all products must be visible
+
+  Scenario:I search for products
+    When I enter a "Mens Casual" in the search field
+    Then Relevant results are displayed
+    And Results contain the keyword "Mens Casual"
