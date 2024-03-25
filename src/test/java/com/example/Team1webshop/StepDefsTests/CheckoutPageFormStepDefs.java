@@ -27,21 +27,25 @@ public class CheckoutPageFormStepDefs {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
+    // Samuel
     @Given("user is on the products page")
     public void user_is_on_products_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
+    // Samuel
     @Given("add product to cart")
     public void add_product_to_cart() {
         driver.findElement(By.xpath("//button[contains(text(), 'Add to cart')]")).click();
     }
 
+    // Samuel
     @Given("click on checkout")
     public void click_on_checkout() {
         driver.findElement(By.xpath("//a[contains(@class, 'btn-warning') and contains(text(), 'Checkout')]")).click();
     }
 
+    // Samuel
     @Given("user fills in the form with data {string} {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")
     public void user_fills_in_the_form(String firstName, String lastName, String email, String address, String country, String city, String zipCode, String ccName, String ccNumber, String expDate, String cvv) {
         driver.findElement(By.id("firstName")).sendKeys(firstName);
@@ -57,11 +61,13 @@ public class CheckoutPageFormStepDefs {
         driver.findElement(By.id("cc-cvv")).sendKeys(cvv);
     }
 
+    // Samuel
     @When("user click on continue to checkout")
     public void user_click_on_continue_to_checkout() {
         driver.findElement(By.xpath("//button[contains(text(), 'Continue to checkout')]")).click();
     }
 
+    // Samuel
     @Then("user should get an error message")
     public void user_should_get_an_error_message() {
         boolean isErrorMessageDisplayed = false;
