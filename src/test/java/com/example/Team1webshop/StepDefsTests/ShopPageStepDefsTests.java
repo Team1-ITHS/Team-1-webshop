@@ -42,8 +42,8 @@ public class ShopPageStepDefsTests {
         }
     }
 
-    @When("I click on the mens clothing from shop page") //divya
-    public void i_click_on_the_mens_clothing_from_shop_page() {
+    @When("user clicks on the mens clothing from shop page") //divya
+    public void User_clicks_on_the_mens_clothing_from_shop_page() {
         WebElement filterMensClothing = driver.findElement(By.partialLinkText("Men's clothing"));
         filterMensClothing.click();
     }
@@ -57,63 +57,63 @@ public class ShopPageStepDefsTests {
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("I click on the womens clothing from shop page")//divya
-    public void i_click_on_the_womens_clothing_from_shop_page() {
+    @When("user clicks on the womens clothing from shop page")//divya
+    public void user_clicks_on_the_womens_clothing_from_shop_page() {
         WebElement filterWomensClothing = driver.findElement(By.partialLinkText("Women's clothing"));
         filterWomensClothing.click();
     }
     @Then("Only womens clothing products must be visible")
     public void only_womens_clothing_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
-        int numberOfElements = mens_product.size();
+        WebElement womens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
+        List<WebElement> womens_product = womens_clothing.findElements(By.className("card-body"));
+        int numberOfElements = womens_product.size();
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("I click on the jewelery from shop page")//divya
-    public void i_click_on_the_jewelery_from_shop_page() {
+    @When("user clicks on the jewelery from shop page")//divya
+    public void user_clicks_on_the_jewelery_from_shop_page() {
         WebElement filterjewelery = driver.findElement(By.partialLinkText("Jewelery"));
         filterjewelery.click();
     }
     @Then("Only jewelery products must be visible")
     public void only_jewelery_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
-        int numberOfElements = mens_product.size();
+        WebElement jewelery = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
+        List<WebElement> jewelery_product = jewelery.findElements(By.className("card-body"));
+        int numberOfElements = jewelery_product.size();
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("I click on the electronics from shop page")//divya
-    public void i_click_on_the_electronics_from_shop_page() {
+    @When("User clicks on the electronics from shop page")//divya
+    public void user_clicks_on_the_electronics_from_shop_page() {
         WebElement filterelectronics = driver.findElement(By.partialLinkText("Electronics"));
         filterelectronics.click();
     }
     @Then("Only electronic products must be visible")
     public void only_electronic_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
-        int numberOfElements = mens_product.size();
+        WebElement electronics = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
+        List<WebElement> electronics_product = electronics.findElements(By.className("card-body"));
+        int numberOfElements = electronics_product.size();
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("I click on the all from shop page")//divya
-    public void i_click_on_the_all_from_shop_page() {
-        WebElement filterelectronics = driver.findElement(By.partialLinkText("All"));
-        filterelectronics.click();
+    @When("User clicks on the all from shop page")//divya
+    public void user_clicks_on_the_all_from_shop_page() {
+        WebElement all = driver.findElement(By.partialLinkText("All"));
+        all.click();
     }
     @Then("Only all products must be visible")
     public void only_all_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        List<WebElement> mens_product = mens_clothing.findElements(By.className("card-body"));
-        int numberOfElements = mens_product.size();
+        WebElement all = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
+        List<WebElement> all_products = all.findElements(By.className("card-body"));
+        int numberOfElements = all_products.size();
         Assertions.assertEquals(20, numberOfElements);
     }
 
-    @When("I enter a {string} in the search field")//divya
+    @When("User enter a {string} in the search field")//divya
     public void i_enter_a_in_the_search_field(String string) {
         WebElement searchField = driver.findElement(By.id("search"));
         searchField.sendKeys("Mens Casual");

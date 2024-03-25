@@ -13,3 +13,8 @@ Feature: Checkout page form
     Examples:
       | firstName | lastName   | email | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
       | "test"    | "testsson" | ""    | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+
+  Scenario: User should be notified on entering invalid mail id
+    When user enters a invalid mail id
+    And submits the form
+    Then user should be notified with a error message
