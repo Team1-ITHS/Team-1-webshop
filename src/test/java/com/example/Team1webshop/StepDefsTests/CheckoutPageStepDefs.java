@@ -26,12 +26,12 @@ public class CheckoutPageStepDefs {
 
     @Before
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");    // Open browser in incognito mode
-        options.addArguments("--start-maximized");  // Open browser maximized
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--incognito");    // Open browser in incognito mode
+//        options.addArguments("--start-maximized");  // Open browser maximized
+//        driver = new ChromeDriver(options);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
     }
 
     @Given("User has navigated to the checkout page")
@@ -84,7 +84,6 @@ public class CheckoutPageStepDefs {
         }
     }
 
-
     @When("Users navigates to the checkout page")
     public void users_navigates_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
@@ -96,9 +95,6 @@ public class CheckoutPageStepDefs {
         int updatedItemCount = Integer.parseInt(itemCountElement.getText());
         Assertions.assertEquals(expectedItemCount, updatedItemCount);
     }
-
-
- 
 
     // Samuel
     @When("User adds a specific product to the cart {string}")
