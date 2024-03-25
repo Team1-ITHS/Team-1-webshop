@@ -18,11 +18,11 @@ public class HomePageStepDefs {
 
     @Before
     public void setup(){
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--incognito");
-//        options.addArguments("--start-maximized");
-//        driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @Given("User has navigated to the start page")
