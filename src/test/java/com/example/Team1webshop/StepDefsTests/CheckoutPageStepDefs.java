@@ -26,12 +26,12 @@ public class CheckoutPageStepDefs {
 
     @Before
     public void setup() {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--incognito");    // Open browser in incognito mode
-//        options.addArguments("--start-maximized");  // Open browser maximized
-//        driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");    // Open browser in incognito mode
+        options.addArguments("--start-maximized");  // Open browser maximized
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
     }
 
     @Given("User has navigated to the checkout page")
