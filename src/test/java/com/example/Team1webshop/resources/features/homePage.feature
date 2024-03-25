@@ -24,3 +24,11 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/
     Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/#"
     #when About-site is available change to row below
     #Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
+  #divya
+  Scenario: Click on the Home link
+    When the user clicks on the Home link
+    Then the user should be directed to home page
+
+  Scenario: Minimize the screen to check the alignment of elements
+    When user minimizes the screen
+    Then the application should be aligned automatically accordingly

@@ -73,6 +73,28 @@ public class HomePageStepDefs {
         Assertions.assertTrue(driver.findElement(By.xpath("//h2[text()='Checkout form']")).isDisplayed(), "Element is not visible");
     }
 
+    @When("the user clicks on the Home link") //Divya
+    public void the_user_click_on_the_Home_link() {
+        WebElement home = driver.findElement(By.partialLinkText("Home"));
+        home.click();
+    }
+    @Then("the user should be directed to home page")
+    public void the_user_should_be_directed_to_home_page() {
+        String actualUrl = driver.getCurrentUrl();
+        Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/", actualUrl);
+    }
+
+    @When("user minimizes the screen")
+    public void user_minimizes_the_screen() {
+        driver.manage().window().minimize();
+    }
+    @Then("the application should be aligned automatically accordingly")
+    public void the_application_should_be_aligned_automatically_accordingly() {
+        WebElement aligned = driver.findElement(By.xpath("/html/body"));
+        boolean display = aligned.isDisplayed();
+        Assertions.assertTrue(display);
+    }
+
     @After
     public void tearDown() {
         if (driver != null)
