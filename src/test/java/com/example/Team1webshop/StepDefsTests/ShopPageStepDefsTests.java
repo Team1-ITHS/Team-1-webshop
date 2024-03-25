@@ -139,6 +139,20 @@ public class ShopPageStepDefsTests {
     }
 
 
+    // Samuel
+    @When("adding {int} products to the cart")
+    public void addingAProductsToTheCart(Integer productsAdded) {
+        driver.findElement(By.xpath("//button[contains(text(), 'Add to cart')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Add to cart')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(), 'Add to cart')]")).click();
+    }
+
+    // Samuel
+    @Then("number of products in the cart should be {int}")
+    public void number_of_products_in_the_cart_should_be(Integer productsInCart) {
+        String amount = driver.findElement(By.id("buttonSize")).getText();
+        Assertions.assertEquals(productsInCart.toString(), amount);
+    }
 
 }
 
