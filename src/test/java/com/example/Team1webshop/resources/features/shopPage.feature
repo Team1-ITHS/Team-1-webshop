@@ -4,27 +4,27 @@ Feature: Test cases for shop page
     Given The user clicks on the shop page
     Then The user is navigated to the shop page
 
+  #divya
   Scenario:I filter products by mens clothing
     When I click on the mens clothing from shop page
     Then Only mens clothing products must be visible
-
+  #divya
   Scenario:I filter products by womens clothing
     When I click on the womens clothing from shop page
     Then Only womens clothing products must be visible
-
+  #divya
   Scenario:I filter products by jewelery
     When I click on the jewelery from shop page
     Then Only jewelery products must be visible
-
+  #divya
   Scenario:I filter products by electronics
     When I click on the electronics from shop page
     Then Only electronic products must be visible
-
+  #divya
   Scenario:I remove the filter
     When I click on the all from shop page
     Then Only all products must be visible
-
-
+  #divya
   Scenario:I search for products
     When I enter a "Mens Casual" in the search field
     Then Relevant results are displayed
