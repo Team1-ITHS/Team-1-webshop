@@ -4,8 +4,14 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/
   Background: The user is on the start page
     Given User has navigated to the start page
 
-  Scenario: page title test
-    Then the page title should be Webbutiken
+    #Samuel
+  Scenario: When on start page user should see correct page title
+    Then the page title should be "Webbutiken"
+
+    #Samuel
+  Scenario: When user clicks on the checkout button on the start page user should be redirected to the checkout form page
+    When the user click on the Checkout button
+    Then the user should be redirected to the Checkout form page
 
     #Mia
   Scenario: Click on the Shop link
