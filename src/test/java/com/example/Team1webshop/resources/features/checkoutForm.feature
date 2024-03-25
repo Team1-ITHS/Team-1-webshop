@@ -1,6 +1,7 @@
 Feature: Checkout page form
   This feature includes test to verify the form functionality on the checkout page
 
+   #Samuel
   Background: User is on the checkout page with a product added to the cart
     Given user is on the products page
     And add product to cart
@@ -12,5 +13,15 @@ Feature: Checkout page form
     When user click on continue to checkout
     Then user should get an error message
     Examples:
-      | firstName | lastName   | email | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
-      | "test"    | "testsson" | ""    | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
+      | ""        | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | ""         | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | ""               | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | ""                 | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | ""        | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | ""      | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | ""      | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | ""              | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | ""         | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | ""        | "123" |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | ""    |
