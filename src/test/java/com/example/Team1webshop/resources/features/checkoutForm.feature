@@ -6,6 +6,7 @@ Feature: Checkout page form
     And add product to cart
     And click on checkout
 
+    #Samuel
   Scenario Outline: User should get an error message when submitting an incomplete form on the checkout page
     Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When user click on continue to checkout
