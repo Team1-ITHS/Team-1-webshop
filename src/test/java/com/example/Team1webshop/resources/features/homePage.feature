@@ -18,6 +18,11 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/
     When the user clicks on the "Shop" link
     Then the user should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/products"
 
+        #Mia
+  Scenario: Click on the Checkout link
+    When the user clicks on the "Checkout" link
+    Then the user should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/checkout"
+
     #Mia
   Scenario: Click on the About link
     When the user click on the "About" link
