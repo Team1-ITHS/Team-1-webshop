@@ -1,9 +1,9 @@
 package com.example.Team1webshop.StepDefsTests;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -11,10 +11,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.time.Duration;
 import java.util.List;
 
 public class CheckoutPageFormStepDefs {
+
     static WebDriver driver;
 
     @Before
@@ -82,7 +84,7 @@ public class CheckoutPageFormStepDefs {
                 break;
             }
         }
-        Assertions.assertTrue(isErrorMessageDisplayed,"No error message is being displayed for required text field");
+        Assertions.assertTrue(isErrorMessageDisplayed, "No error message is being displayed for required text field");
     }
 
     @After

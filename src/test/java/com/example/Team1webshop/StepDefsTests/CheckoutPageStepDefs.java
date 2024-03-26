@@ -17,8 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class CheckoutPageStepDefs {
 
     static WebDriver driver;
