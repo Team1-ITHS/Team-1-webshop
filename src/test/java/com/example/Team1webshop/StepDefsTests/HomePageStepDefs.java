@@ -48,13 +48,13 @@ public class HomePageStepDefs {
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
-    @When("the user clicks on the {string} link") //Mia
-    public void the_user_clicks_on_the_link(String CheckoutLink) {
+    @When("the user clicks on the {string} links") //Mia
+    public void the_user_clicks_on_the_links(String CheckoutLink) {
         driver.findElement(By.linkText(CheckoutLink)).click();
     }
 
-    @Then("the user should be redirected to {string}") //Mia
-    public void the_user_should_be_redirected_to(String expectedUrl) {
+    @Then("the user should be redirected too {string}") //Mia
+    public void the_user_should_be_redirected_too(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
