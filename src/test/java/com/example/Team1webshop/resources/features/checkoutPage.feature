@@ -1,4 +1,3 @@
-
 Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
   This feature includes tests to verify functionality of the checkout page
 
@@ -31,5 +30,20 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
       | "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket" | "Lock and Love Womens Removable Hooded Faux Leather Moto Biker Jacket" |
       | "Pierced Owl Rose Gold Plated Stainless Steel Double"                   | "Pierced Owl Rose Gold Plated Stainless Steel Double"                  |
       | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                   | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                  |
+
+    #Semih
+  Scenario: User should be able to add multiple products to the cart
+    Given Users has navigated to the product page
+    When User added multiple products to the cart
+    Then Products should be added to cart
+
+    #Semih
+  Scenario: User should be able to move in and out from the checkout page
+    Given Users has navigated to the product page
+    When User clicks on the checkout button
+    Then User should be navigated to checkout page
+    When User clicks on shop button
+    Then User should be navigated to shopping page
+
 
 

@@ -1,6 +1,7 @@
 package com.example.Team1webshop.StepDefsTests;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -116,6 +117,62 @@ public class CheckoutPageStepDefs {
         String productText = productElement.getText();
         Assertions.assertEquals(addedProduct, productText);
     }
+
+    //Semih
+    @When("User added multiple products to the cart")
+    public void user_added_multiple_products_to_the_cart() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[1]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[2]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
+
+    }
+
+    //Semih  btn btn-warning
+    @Then("Products should be added to cart")
+    public void products_should_be_added_to_cart() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        String actualFirstProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[1]")).getText();
+        String actualSecondProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[2]")).getText();
+        String actualThirdProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[3]")).getText();
+
+        Assertions.assertAll("product names in the cart",
+                () -> assertEquals("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", actualFirstProductname),
+                () -> assertEquals("Mens Casual Premium Slim Fit T-Shirts", actualSecondProductname),
+                () -> assertEquals("Mens Cotton Jacket", actualThirdProductname)
+        );
+    }
+
+    @When("User clicks on the checkout button")
+    public void user_clicks_on_the_checkout_button() {
+        driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
+
+    }
+
+    @Then("User should be navigated to checkout page")
+    public void user_should_be_navigated_to_checkout_page() {
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/checkout";
+        Assertions.assertEquals(expectedURL, actualURL);
+
+    }
+
+    @When("User clicks on shop button")
+    public void user_clicks_on_shop_button() {
+        driver.findElement(By.xpath("(//*[@class='nav-link px-2 text-white'])[2]")).click();
+    }
+    //*[@class='btn btn-warning']
+    @Then("User should be navigated to shopping page")
+    public void user_should_be_navigated_to_shopping_page() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/products";
+        Assertions.assertEquals(expectedURL, actualURL);
+    }
+
+
 
     @After
     public void tearDown() {
