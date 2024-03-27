@@ -24,11 +24,21 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/
     Then the user should be redirected too "https://webshop-agil-testautomatiserare.netlify.app/checkout"
 
     #Mia
-  Scenario: Click on the About link
-    When the user click on the "About" link
-    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/#"
-    #when About-site is available change to row below
-    #Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
+  Scenario: Click on the About link on the top of the page
+    When the user click on the "About" link on the top of the page
+    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
+
+    #Mia
+  Scenario: Click on the About link in the bottom of the page
+    When the user click on the "About" link in the bottom of the page
+    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
+
+#Mia
+  Scenario: Click on the To all products button on About-site
+    Given user is in the About page
+    When the user click on the "To all products" button
+    Then the users shold be redirected to "https://webshop-agil-testautomatiserare.netlify.app/products.html"
+
   #divya
   Scenario: Click on the Home link
     When the user clicks on the Home link
