@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopPageStepDefsTests {
@@ -185,7 +186,6 @@ public class ShopPageStepDefsTests {
         String amount = driver.findElement(By.id("buttonSize")).getText();
         Assertions.assertEquals(productsInCart.toString(), amount);
     }
-
 }
 
 

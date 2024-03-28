@@ -37,8 +37,7 @@ Feature: Test cases for shop page
     When User enter a "Mens Casual" in the search field
     Then Relevant results are displayed
     And Results contain the keyword "Mens Casual"
-
-    #Samuel
+  #Samuel
   Scenario: When user adds X amount of products to the cart the total amount inside checkout button should increase
     When adding 3 products to the cart
     Then number of products in the cart should be 3
