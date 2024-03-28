@@ -45,5 +45,18 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
     When User clicks on shop button
     Then User should be navigated to shopping page
 
+     #Semih
+  Scenario: User should be able to add same products multiple times to the cart
+    Given Users has navigated to the product page
+    When User add to cart button three times for the same product
+    Then three pieces of same products should be added e cart
+
+
+      #Semih
+  Scenario: User should be able to select different type of payment methods on chekout page
+    Given Users has navigated to the product page
+    When User navigates to the checkout page
+    Then Credit card option should be selected as a default payment method
+    And User should be able select debit cart or paypal as well as a payment methods
 
 
