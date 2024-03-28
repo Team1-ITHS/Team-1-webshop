@@ -1,28 +1,26 @@
 package com.example.Team1webshop.StepDefsTests;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class ShopPageStepDefsTests {
-    static WebDriver driver;
+public class ShopPageStepDefs {
+    private final WebDriver driver;
 
-    @Given("The user clicks on the shop page") //divya
+    public ShopPageStepDefs() {
+        this.driver = Hooks.getDriver();
+    }
+
+    @When("User navigates to the shop page") //divya
     public void setup() throws InterruptedException {
-        driver = new ChromeDriver();
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
-        driver.manage().window().maximize();
         WebElement shopButton = driver.findElement(By.xpath("/html//header//ul//a[@href='/products']"));
         shopButton.click();
         Thread.sleep(2000);
@@ -32,14 +30,6 @@ public class ShopPageStepDefsTests {
     public void I_should_be_navigated_to_Shop_page() {
         String navigated_url = driver.getCurrentUrl();
         Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/products",navigated_url);
-    }
-
-
-    @After
-    public void tearDown(){
-        if (driver != null) {
-            driver.quit();
-        }
     }
 
     @When("user clicks on the mens clothing from shop page") //divya
@@ -137,7 +127,6 @@ public class ShopPageStepDefsTests {
         }
         Assertions.assertTrue(keywordFound);
     }
-
 
     // Samuel
     @When("adding {int} products to the cart")

@@ -1,7 +1,5 @@
 package com.example.Team1webshop.StepDefsTests;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,23 +7,14 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.time.Duration;
 import java.util.List;
 
 public class CheckoutPageFormStepDefs {
 
-    static WebDriver driver;
+    private final WebDriver driver;
 
-    @Before
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    public CheckoutPageFormStepDefs(){
+        this.driver = Hooks.getDriver();
     }
 
     // Samuel
@@ -71,6 +60,7 @@ public class CheckoutPageFormStepDefs {
     // Samuel
     @Then("user should get an error message")
     public void user_should_get_an_error_message() {
+
         boolean isErrorMessageDisplayed = false;
         List<WebElement> formFeedbackElements = driver.findElements(By.className("invalid-feedback"));
 
@@ -85,12 +75,5 @@ public class CheckoutPageFormStepDefs {
             }
         }
         Assertions.assertTrue(isErrorMessageDisplayed, "No error message is being displayed for required text field");
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }

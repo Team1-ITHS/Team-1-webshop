@@ -1,28 +1,17 @@
 package com.example.Team1webshop.StepDefsTests;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.time.Duration;
 
 public class HomePageStepDefs {
 
-    static WebDriver driver;
+    private final WebDriver driver;
 
-    @Before
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    public HomePageStepDefs() {
+        this.driver = Hooks.getDriver();
     }
 
     @Given("User has navigated to the start page")
@@ -35,7 +24,6 @@ public class HomePageStepDefs {
     public void the_page_title_should_be_webbutiken(String pageTitle) {
         Assertions.assertEquals(pageTitle, driver.getTitle());
     }
-
 
     @When("the user clicks on the {string} link") //Mia
     public void the_user_clicks_on_the_link(String shopLink) {
@@ -58,6 +46,7 @@ public class HomePageStepDefs {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
+
     @When("the user click on the {string} link") //Mia
     public void the_user_click_on_the_link(String aboutLink) {
         //To be added when you can click about link
@@ -105,11 +94,5 @@ public class HomePageStepDefs {
         WebElement aligned = driver.findElement(By.xpath("/html/body"));
         boolean display = aligned.isDisplayed();
         Assertions.assertTrue(display);
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null)
-            driver.quit();
     }
 }

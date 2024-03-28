@@ -1,4 +1,4 @@
-package com.example.Team1webshop;
+package com.example.Team1webshop.runners;
 
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
@@ -10,6 +10,5 @@ import io.cucumber.junit.CucumberOptions;
         glue = {"com.example.Team1webshop.StepDefsTests"},
         plugin = {"pretty", "html:target/cucumber-reports"} // Plugins for generating reports
 )
-public class CucumberTestRunner {
-
+public class CucumberTestRunnerTests {
 }

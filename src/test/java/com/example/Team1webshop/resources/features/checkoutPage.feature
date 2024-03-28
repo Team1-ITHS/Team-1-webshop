@@ -1,5 +1,5 @@
-Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
-  This feature includes tests to verify functionality of the checkout page
+Feature: Checkout page of The Shop web app
+  This feature includes tests to verify functionality of The Shop's checkout page
 
     #Mia
   Scenario: Remove an item from the shopping cart
@@ -9,14 +9,12 @@ Feature: https://webshop-agil-testautomatiserare.netlify.app/checkout
     And User removes 1 item
     Then The item count in the shopping cart should decrease by 1
 
-
     #Mia
   Scenario: Add multiple items to the shopping cart
     Given Users has navigated to the product page
     When User clicks on the "Add to cart" button 5 times
     And Users navigates to the checkout page
     Then The item count in the shopping cart should be 5
-
 
     #Samuel
   Scenario Outline: User should see same product on checkout page as was added from the shop page
