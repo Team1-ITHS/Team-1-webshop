@@ -1,3 +1,4 @@
+
 Feature: Checkout page form
   This feature includes test to verify the form functionality on the checkout page
 
