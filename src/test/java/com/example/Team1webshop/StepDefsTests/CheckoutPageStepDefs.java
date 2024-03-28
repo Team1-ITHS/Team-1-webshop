@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public class CheckoutPageStepDefs {
@@ -103,5 +104,34 @@ public class CheckoutPageStepDefs {
         WebElement productElement = driver.findElement(By.xpath("//ul[@id='cartList']//h6"));
         String productText = productElement.getText();
         Assertions.assertEquals(addedProduct, productText);
+    }
+
+    // Samuel
+    @When("User adds some sample products to cart")
+    public void userAddsSomeSampleProductsToCart() {
+        String[] productTitles = {
+                "Mens Cotton Jacket",
+                "Pierced Owl Rose Gold Plated Stainless Steel Double",
+                "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
+                "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
+        };
+
+        for (String product : productTitles) {
+            driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
+        }
+    }
+
+    // Samuel
+    @Then("User should see correct total price")
+    public void userShouldSeeCorrectTotalPrice() {
+        WebElement cartList = driver.findElement(By.id("cartList"));
+        List<WebElement> listItems = cartList.findElements(By.tagName("li"));
+        WebElement lastListItem = listItems.get(listItems.size() - 1);
+        WebElement lastElementInLastListItem = lastListItem.findElement(By.tagName("*"));
+        WebElement nextElement = lastElementInLastListItem.findElement(By.xpath("following-sibling::*"));
+        String nextElementText = nextElement.getText();
+        String totalPriceTemp = nextElementText.substring(1);
+        float totalPrice = Float.parseFloat(totalPriceTemp);
+        Assertions.assertEquals(1106.96F,totalPrice,"Total price is not correct");
     }
 }

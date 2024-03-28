@@ -29,3 +29,10 @@ Feature: Checkout page of The Shop web app
       | "Pierced Owl Rose Gold Plated Stainless Steel Double"                   | "Pierced Owl Rose Gold Plated Stainless Steel Double"                  |
       | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                   | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                  |
 
+    #Samuel
+  Scenario: User should see correct total price on checkout page when adding multiple products
+    Given User has navigated to the product page
+    When User adds some sample products to cart
+    And User navigates to the checkout page
+    Then User should see correct total price
+
