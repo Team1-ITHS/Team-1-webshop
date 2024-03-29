@@ -16,6 +16,7 @@ public class Hooks {
         // System.setProperty("webdriver.chrome.driver", "src/test/java/com/example/CucumberSelenium/drivers/chromedriver.exe"); // Provide path to chromedriver
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
 //      options.addArguments("--incognito");
 //      options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);

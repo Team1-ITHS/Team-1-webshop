@@ -1,10 +1,13 @@
 package com.example.Team1webshop.StepDefsTests;
 
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -119,6 +122,112 @@ public class CheckoutPageStepDefs {
         for (String product : productTitles) {
             driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
         }
+    }
+
+    //Semih
+    @When("User added multiple products to the cart")
+    public void user_added_multiple_products_to_the_cart() {
+        // Commenting out this since we already have a wait function
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[1]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[2]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
+    }
+
+    //Semih
+    @Then("Products should be added to cart")
+    public void products_should_be_added_to_cart() {
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        String actualFirstProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[1]")).getText();
+        String actualSecondProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[2]")).getText();
+        String actualThirdProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[3]")).getText();
+
+        Assertions.assertAll("product names in the cart",
+                () -> Assertions.assertEquals("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", actualFirstProductname),
+                () -> Assertions.assertEquals("Mens Casual Premium Slim Fit T-Shirts", actualSecondProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualThirdProductname)
+        );
+    }
+
+    //Semih
+    @When("User clicks on the checkout button")
+    public void user_clicks_on_the_checkout_button() {
+        driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
+    }
+
+    //Semih
+    @Then("User should be navigated to checkout page")
+    public void user_should_be_navigated_to_checkout_page() {
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/checkout";
+        Assertions.assertEquals(expectedURL, actualURL);
+    }
+
+    //Semih
+    @When("User clicks on shop button")
+    public void user_clicks_on_shop_button() {
+        driver.findElement(By.xpath("(//*[@class='nav-link px-2 text-white'])[2]")).click();
+    }
+
+    //Semih
+    @Then("User should be navigated to shopping page")
+    public void user_should_be_navigated_to_shopping_page() {
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/products";
+        Assertions.assertEquals(expectedURL, actualURL);
+    }
+
+    //Semih
+    @When("User add to cart button three times for the same product")
+    public void user_add_to_cart_button_three_times_for_the_same_product() {
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
+        driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
+    }
+
+    //Semih
+    @Then("three pieces of same products should be added e cart")
+    public void three_pieces_of_same_products_should_be_added_e_cart() {
+        // wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
+        String actualFirtsProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[1]")).getText();
+        String actualSecondProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[2]")).getText();
+        String actualThirdProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[3]")).getText();
+
+        Assertions.assertEquals("3", driver.findElement(By.xpath(" //*[@class='badge bg-primary rounded-pill']")).getText());
+
+        Assertions.assertAll("product names in the cart",
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualFirtsProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualSecondProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualThirdProductname)
+        );
+    }
+
+    //Semih
+    @Then("Credit card option should be selected as a default payment method")
+    public void credit_card_option_should_be_selected_as_a_default_payment_method() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,250)", "");
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean paymentMethodOption = driver.findElement(By.xpath("(//input[@type='radio'])[1]")).isSelected();
+        Assertions.assertTrue(paymentMethodOption);
+    }
+
+    //Semih
+    @Then("User should be able select debit cart or paypal as well as a payment methods")
+    public void user_should_be_able_select_debit_cart_or_paypal_as_well_as_a_payment_methods() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("(//input[@type='radio'])[3]")).click();
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean paypalCardOption = driver.findElement(By.xpath("(//input[@type='radio'])[3]")).isSelected();
+        Assertions.assertTrue(paypalCardOption);
+        driver.findElement(By.xpath("(//input[@type='radio'])[2]")).click();
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean debitCardOption = driver.findElement(By.xpath("(//input[@type='radio'])[2]")).isSelected();
+        Assertions.assertTrue(debitCardOption);
     }
 
     // Samuel

@@ -53,11 +53,37 @@ public class HomePageStepDefs {
         //driver.findElement(By.linkText(aboutLink)).click();
     }
 
+    @When("the user click on the {string} link on the top of the page")
+    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink){
+        driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
+    }
+
     @Then("the users should be redirected to {string}") //Mia
     public void the_users_should_be_redirected_to(String expected_Url) {
-        Assertions.assertTrue(true); //to be removed when actual About-link exists
-        //String actual_Url = driver.getCurrentUrl();
-        //Assertions.assertEquals(expected_Url, actual_Url, "Expected URL: " + expected_Url + ", Actual URL: " + actual_Url);
+        String actual_Url = driver.getCurrentUrl();
+        Assertions.assertEquals(expected_Url, actual_Url, "Expected URL: " + expected_Url + ", Actual URL: " + actual_Url);
+    }
+
+    @When("the user click on the {string} link in the bottom of the page")//Mia
+    public void the_user_click_on_the_link_in_the_bottom_of_the_page(String aboutLink_bottom) {
+        driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-muted' and text()='About'])[1]")).click();
+    }
+
+    @Given("user is in the About page") //Mia
+    public void user_is_in_the_about_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/about");
+    }
+
+    @When("the user click on the {string} button")
+    public void the_user_click_on_the_button(String buttonLabel) {
+        WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
+        button.click();
+    }
+
+    @Then("the users shold be redirected to {string}")
+    public void the_users_shold_be_redirected_to(String expectedUrl) {
+        String actualUrl = driver.getCurrentUrl();
+        Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     // Samuel

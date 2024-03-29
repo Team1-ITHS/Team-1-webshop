@@ -36,3 +36,30 @@ Feature: Checkout page of The Shop web app
     And User navigates to the checkout page
     Then User should see correct total price
 
+    #Semih
+  Scenario: User should be able to add multiple products to the cart
+    Given Users has navigated to the product page
+    When User added multiple products to the cart
+    Then Products should be added to cart
+
+    #Semih
+  Scenario: User should be able to move in and out from the checkout page
+    Given Users has navigated to the product page
+    When User clicks on the checkout button
+    Then User should be navigated to checkout page
+    When User clicks on shop button
+    Then User should be navigated to shopping page
+
+    #Semih
+  Scenario: User should be able to add same products multiple times to the cart
+    Given Users has navigated to the product page
+    When User add to cart button three times for the same product
+    Then three pieces of same products should be added e cart
+
+    #Semih
+  Scenario: User should be able to select different type of payment methods on checkout page
+    Given Users has navigated to the product page
+    When User navigates to the checkout page
+    Then Credit card option should be selected as a default payment method
+    And User should be able select debit cart or paypal as well as a payment methods
+
