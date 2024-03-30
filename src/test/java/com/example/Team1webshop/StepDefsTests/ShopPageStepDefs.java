@@ -138,10 +138,10 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(20, numberOfElements);
     }
 
-    @When("User enter a {string} in the search field")//divya
-    public void i_enter_a_in_the_search_field(String string) {
+    @When("User searches with specific word in the search field {string}")//divya
+    public void i_enter_a_in_the_search_field(String keyword) {
         WebElement searchField = driver.findElement(By.id("search"));
-        searchField.sendKeys("Mens Casual");
+        searchField.sendKeys(keyword);
     }
 
     @Then("Relevant results are displayed")
@@ -151,11 +151,11 @@ public class ShopPageStepDefs {
     }
 
     @And("Results contain the keyword {string}")
-    public void results_contain_the_keyword(String string) {
+    public void results_contain_the_keyword(String keyword) {
         List<WebElement> searchResults = driver.findElements(By.className("card-body"));
         boolean keywordFound = false;
         for (WebElement result : searchResults) {
-            if (result.getText().contains("Mens Casual")) {
+            if (result.getText().toLowerCase().contains(keyword.toLowerCase())) {
                 keywordFound = true;
                 break;
             }
