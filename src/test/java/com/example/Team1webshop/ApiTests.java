@@ -12,8 +12,6 @@ import static org.hamcrest.Matchers.*;
 public class ApiTests {
     private Response response; // Deklarerar response som en privat instansvariabelgit
 
-
-
     // Samuel
     @Test
     @DisplayName("Check endpoint status code and if all categories are available")
