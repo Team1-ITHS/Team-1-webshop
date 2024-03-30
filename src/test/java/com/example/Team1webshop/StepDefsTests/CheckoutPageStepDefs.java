@@ -10,37 +10,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.cucumber.java.After;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CheckoutPageStepDefs {
 
-    static WebDriver driver;
+    private final WebDriver driver;
     WebDriverWait wait;
 
-    @Before
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");    // Open browser in incognito mode
-        options.addArguments("--start-maximized");  // Open browser maximized
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Ange väntetiden här
+    public CheckoutPageStepDefs() {
+        this.driver = Hooks.getDriver();
     }
 
     @Given("User has navigated to the checkout page")
     public void user_has_navigated_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
-
 
     //Mia
     @Given("User has navigated to the product page")
@@ -50,7 +37,9 @@ public class CheckoutPageStepDefs {
 
     @When("User clicks on the {string} button")
     public void user_clicks_on_the_button(String buttonLabel) {
-        WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(), '" + buttonLabel + "')]")));
+        // Exchanged wait-function to implicitly wait
+        //WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(), '" + buttonLabel + "')]")));
+        WebElement addButton = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
         addButton.click();
     }
 
@@ -81,7 +70,8 @@ public class CheckoutPageStepDefs {
     @When("User clicks on the {string} button {int} times")
     public void user_clicks_on_the_button_multiple_times(String buttonLabel, int times) {
         for (int i = 0; i < times; i++) {
-            WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(), '" + buttonLabel + "')]")));
+            //WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(), '" + buttonLabel + "')]")));
+            WebElement addButton = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
             addButton.click();
         }
     }
@@ -119,30 +109,45 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(addedProduct, productText);
     }
 
+    // Samuel
+    @When("User adds some sample products to cart")
+    public void userAddsSomeSampleProductsToCart() {
+        String[] productTitles = {
+                "Mens Cotton Jacket",
+                "Pierced Owl Rose Gold Plated Stainless Steel Double",
+                "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
+                "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
+        };
+
+        for (String product : productTitles) {
+            driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
+        }
+    }
+
     //Semih
     @When("User added multiple products to the cart")
     public void user_added_multiple_products_to_the_cart() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        // Commenting out this since we already have a wait function
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[1]")).click();
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[2]")).click();
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
-
     }
 
     //Semih
     @Then("Products should be added to cart")
     public void products_should_be_added_to_cart() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         String actualFirstProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[1]")).getText();
         String actualSecondProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[2]")).getText();
         String actualThirdProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[3]")).getText();
 
         Assertions.assertAll("product names in the cart",
-                () -> assertEquals("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", actualFirstProductname),
-                () -> assertEquals("Mens Casual Premium Slim Fit T-Shirts", actualSecondProductname),
-                () -> assertEquals("Mens Cotton Jacket", actualThirdProductname)
+                () -> Assertions.assertEquals("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", actualFirstProductname),
+                () -> Assertions.assertEquals("Mens Casual Premium Slim Fit T-Shirts", actualSecondProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualThirdProductname)
         );
     }
 
@@ -150,7 +155,6 @@ public class CheckoutPageStepDefs {
     @When("User clicks on the checkout button")
     public void user_clicks_on_the_checkout_button() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
-
     }
 
     //Semih
@@ -159,7 +163,6 @@ public class CheckoutPageStepDefs {
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/checkout";
         Assertions.assertEquals(expectedURL, actualURL);
-
     }
 
     //Semih
@@ -171,7 +174,7 @@ public class CheckoutPageStepDefs {
     //Semih
     @Then("User should be navigated to shopping page")
     public void user_should_be_navigated_to_shopping_page() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://webshop-agil-testautomatiserare.netlify.app/products";
         Assertions.assertEquals(expectedURL, actualURL);
@@ -188,7 +191,7 @@ public class CheckoutPageStepDefs {
     //Semih
     @Then("three pieces of same products should be added e cart")
     public void three_pieces_of_same_products_should_be_added_e_cart() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        // wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
         String actualFirtsProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[1]")).getText();
         String actualSecondProductname = driver.findElement(By.xpath("(//*[@class='my-0 w-75'])[2]")).getText();
@@ -197,9 +200,9 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals("3", driver.findElement(By.xpath(" //*[@class='badge bg-primary rounded-pill']")).getText());
 
         Assertions.assertAll("product names in the cart",
-                () -> assertEquals("Mens Cotton Jacket", actualFirtsProductname),
-                () -> assertEquals("Mens Cotton Jacket", actualSecondProductname),
-                () -> assertEquals("Mens Cotton Jacket", actualThirdProductname)
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualFirtsProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualSecondProductname),
+                () -> Assertions.assertEquals("Mens Cotton Jacket", actualThirdProductname)
         );
     }
 
@@ -208,7 +211,7 @@ public class CheckoutPageStepDefs {
     public void credit_card_option_should_be_selected_as_a_default_payment_method() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,250)", "");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         boolean paymentMethodOption = driver.findElement(By.xpath("(//input[@type='radio'])[1]")).isSelected();
         Assertions.assertTrue(paymentMethodOption);
     }
@@ -217,21 +220,27 @@ public class CheckoutPageStepDefs {
     @Then("User should be able select debit cart or paypal as well as a payment methods")
     public void user_should_be_able_select_debit_cart_or_paypal_as_well_as_a_payment_methods() throws InterruptedException {
         Thread.sleep(3000);
-
         driver.findElement(By.xpath("(//input[@type='radio'])[3]")).click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         boolean paypalCardOption = driver.findElement(By.xpath("(//input[@type='radio'])[3]")).isSelected();
         Assertions.assertTrue(paypalCardOption);
         driver.findElement(By.xpath("(//input[@type='radio'])[2]")).click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         boolean debitCardOption = driver.findElement(By.xpath("(//input[@type='radio'])[2]")).isSelected();
         Assertions.assertTrue(debitCardOption);
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null)
-            driver.quit();
-
+    // Samuel
+    @Then("User should see correct total price")
+    public void userShouldSeeCorrectTotalPrice() {
+        WebElement cartList = driver.findElement(By.id("cartList"));
+        List<WebElement> listItems = cartList.findElements(By.tagName("li"));
+        WebElement lastListItem = listItems.get(listItems.size() - 1);
+        WebElement lastElementInLastListItem = lastListItem.findElement(By.tagName("*"));
+        WebElement nextElement = lastElementInLastListItem.findElement(By.xpath("following-sibling::*"));
+        String nextElementText = nextElement.getText();
+        String totalPriceTemp = nextElementText.substring(1);
+        float totalPrice = Float.parseFloat(totalPriceTemp);
+        Assertions.assertEquals(1106.96F,totalPrice,"Total price is not correct");
     }
 }
