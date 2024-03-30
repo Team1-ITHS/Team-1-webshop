@@ -93,15 +93,23 @@ public class CheckoutPageFormStepDefs {
         driver.findElement(By.id("cc-cvv")).sendKeys(cvv);
     }
 
-    @When("user click on continue to checkout")
-    public void click_on_continue_to_checkout() {
-        driver.findElement(By.xpath("//button[contains(text(), 'Continue to checkout')]")).click();
-    }
+//    @When("user click on continue to checkout")
+//    public void click_on_continue_to_checkout() {
+//        driver.findElement(By.xpath("//button[contains(text(), 'Continue to checkout')]")).click();
+//    }
 
-    @Then("user should be notified with a error message")
+    @Then("user should be notified with an error message")
     public void error_message_display() {
+        String error_message = "";
+        List<WebElement> formFeedbackElements = driver.findElements(By.className("invalid-feedback"));
+        for(WebElement element : formFeedbackElements){
+            if(!element.getText().isEmpty()){
+                error_message = element.getText();
+                break;
+            }
+        }
         WebElement invalid_feedback = driver.findElement(By.className("invalid-feedback"));
-        String error_message = invalid_feedback.getText();
+        //String error_message = invalid_feedback.getText();
         Assertions.assertEquals("Please enter a valid email address for shipping updates.", error_message );
     }
 }

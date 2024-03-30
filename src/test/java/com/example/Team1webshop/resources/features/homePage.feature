@@ -26,7 +26,7 @@ Feature: Start page of The Shop web app
     #Mia
   Scenario: Click on the About link
     When the user click on the "About" link
-    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/#"
+    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/"
     #when About-site is available change to row below
     #Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
 
