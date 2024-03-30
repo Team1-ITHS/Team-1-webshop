@@ -94,8 +94,9 @@ public class CheckoutPageFormStepDefs {
         driver.findElement(By.id("cc-cvv")).sendKeys(cvv);
     }
 
-    @When("user click on continue to checkout")
-    public void click_on_continue_to_checkout() {
+    @When("user clicks on continue to checkout button")
+    public void continue_to_checkout_button() throws InterruptedException {
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//button[contains(text(), 'Continue to checkout')]")).click();
     }
 

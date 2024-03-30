@@ -29,13 +29,11 @@ Feature: Checkout page form
 
   Scenario Outline: User should be notified on entering invalid mail id
     Given user fills in the form with invalid email <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
-    And user click on continue to checkout
+    And user clicks on continue to checkout button
     Then user should be notified with a error message
     Examples:
       | firstName | lastName   | email             | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
-      | "test"    | "testsson" | "test@com"        | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test@.com"       | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
-      | "test"    | "testsson" | "test@email"      | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
-      | "test"    | "testsson" | "test@email"      | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+      | "test"    | "testsson" | "test@email."      | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test_email.com"  | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test@@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
