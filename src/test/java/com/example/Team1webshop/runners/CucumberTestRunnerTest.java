@@ -10,5 +10,5 @@ import io.cucumber.junit.CucumberOptions;
         glue = {"com.example.Team1webshop.StepDefsTests"},
         plugin = {"pretty", "html:target/cucumber-reports"} // Plugins for generating reports
 )
-public class CucumberTestRunnerTests {
+public class CucumberTestRunnerTest {
 }
