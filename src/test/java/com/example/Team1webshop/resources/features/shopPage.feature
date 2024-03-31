@@ -42,10 +42,16 @@ Feature: Shop page of The Shop web app
     Then Only all products must be visible
 
     #divya
-  Scenario: User search for products
-    When User enter a "Mens Casual" in the search field
+  Scenario Outline: User searches with different keywords
+    When User searches with specific word in the search field <keyword>
     Then Relevant results are displayed
-    And Results contain the keyword "Mens Casual"
+    And Results contain the keyword <keyword>
+    Examples:
+      | keyword |
+      | "Mens casual" |
+      | "GOLD" |
+      | "women" |
+      | "6" |
 
     #Samuel
   Scenario: When user adds X amount of products to the cart the total amount inside checkout button should increase
