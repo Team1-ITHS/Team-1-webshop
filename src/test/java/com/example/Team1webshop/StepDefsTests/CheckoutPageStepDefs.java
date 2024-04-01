@@ -89,8 +89,6 @@ public class CheckoutPageStepDefs {
     // Samuel
     @When("User adds a specific product to the cart {string}")
     public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
-        WebElement element = driver.findElement(By.xpath("//*[contains(@class, 'card-title') and text() = '" + addedProduct + "']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         List<WebElement> productCards = driver.findElements(By.className("card-body"));
         for (WebElement productCard : productCards) {
             WebElement productTitleElement = productCard.findElement(By.className("card-title"));
@@ -113,14 +111,11 @@ public class CheckoutPageStepDefs {
     @When("User adds some sample products to cart")
     public void userAddsSomeSampleProductsToCart() {
         String[] productTitles = {
+                "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                "Mens Casual Premium Slim Fit T-Shirts",
                 "Mens Cotton Jacket",
-                "Pierced Owl Rose Gold Plated Stainless Steel Double",
-                "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
-                "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
         };
         for (String product : productTitles) {
-            WebElement element = driver.findElement(By.xpath("//*[contains(@class, 'card-title') and text() = '" + product + "']"));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
             driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
         }
     }
@@ -242,6 +237,6 @@ public class CheckoutPageStepDefs {
         String nextElementText = nextElement.getText();
         String totalPriceTemp = nextElementText.substring(1);
         float totalPrice = Float.parseFloat(totalPriceTemp);
-        Assertions.assertEquals(1106.96F,totalPrice,"Total price is not correct");
+        Assertions.assertEquals(188.24F, totalPrice, "Total price is not correct");
     }
 }
