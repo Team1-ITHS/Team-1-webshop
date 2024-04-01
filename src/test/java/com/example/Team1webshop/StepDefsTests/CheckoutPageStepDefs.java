@@ -90,7 +90,8 @@ public class CheckoutPageStepDefs {
 
     // Samuel
     @When("User adds a specific product to the cart {string}")
-    public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
+    public void user_adds_a_specific_product_to_the_cart(String addedProduct) throws InterruptedException {
+        Thread.sleep(3000);
         List<WebElement> productCards = driver.findElements(By.className("card-body"));
         for (WebElement productCard : productCards) {
             WebElement productTitleElement = productCard.findElement(By.className("card-title"));
