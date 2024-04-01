@@ -74,7 +74,6 @@ public class CheckoutPageFormStepDefs {
                 break;
             }
         }
-
         Assertions.assertTrue(isErrorMessageDisplayed,"No error message is being displayed for required text field");
     }
 

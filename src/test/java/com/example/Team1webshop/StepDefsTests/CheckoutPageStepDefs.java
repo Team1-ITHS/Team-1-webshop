@@ -1,7 +1,5 @@
 package com.example.Team1webshop.StepDefsTests;
 
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -91,6 +89,8 @@ public class CheckoutPageStepDefs {
     // Samuel
     @When("User adds a specific product to the cart {string}")
     public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
+        WebElement element = driver.findElement(By.xpath("//*[contains(@class, 'card-title') and text() = '" + addedProduct + "']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         List<WebElement> productCards = driver.findElements(By.className("card-body"));
         for (WebElement productCard : productCards) {
             WebElement productTitleElement = productCard.findElement(By.className("card-title"));
@@ -118,8 +118,9 @@ public class CheckoutPageStepDefs {
                 "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
                 "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
         };
-
         for (String product : productTitles) {
+            WebElement element = driver.findElement(By.xpath("//*[contains(@class, 'card-title') and text() = '" + product + "']"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
             driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
         }
     }
