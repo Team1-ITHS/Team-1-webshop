@@ -37,3 +37,32 @@ Feature: Checkout page form of The Shop web app
       | "test"    | "testsson" | "test@email."     | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test_email.com"  | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test@@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+
+    #Semih
+  Scenario Outline: User should be able to proceed credit card payment
+    Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
+    When User select debit card as a payment method
+    And user clicks on continue to checkout
+    Then User should be able proceed credit card payment
+    Examples:
+      | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+
+     #Semih
+  Scenario Outline: User should be able to proceed paypal payment
+    Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
+    When User select paypal as a payment method
+    And user clicks on continue to checkout
+    Then User should be able proceed paypal payment
+    Examples:
+      | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
+
+     #Semih
+  Scenario Outline: User should be able to proceed credit card payment
+    Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
+    When user clicks on continue to checkout
+    Then User should be able proceed credit card payment
+    Examples:
+      | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
+      | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
