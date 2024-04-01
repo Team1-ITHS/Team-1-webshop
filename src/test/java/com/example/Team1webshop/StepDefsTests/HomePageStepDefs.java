@@ -25,6 +25,20 @@ public class HomePageStepDefs {
         Assertions.assertEquals(pageTitle, driver.getTitle());
     }
 
+    @Then("the heading should be {string}") //divya
+    public void the_heading_should_be(String heading) {
+        WebElement mainHeading = driver.findElement(By.tagName("h2"));
+        String actualText = mainHeading.getText();
+        Assertions.assertEquals(heading, actualText);
+    }
+
+    @Then("the subtext should be {string}") //divya
+    public void the_subtext_should_be(String subtext) {
+        WebElement mainHeading = driver.findElement(By.tagName("p"));
+        String actualText = mainHeading.getText();
+        Assertions.assertEquals(subtext, actualText);
+    }
+
     @When("the user clicks on the {string} link") //Mia
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
