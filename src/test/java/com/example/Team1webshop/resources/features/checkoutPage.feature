@@ -24,7 +24,7 @@ Feature: Checkout page of The Shop web app
     Then User should see same product on checkout page <actualProduct>
     Examples:
       | addedProduct                                                            | actualProduct                                                          |
-      | "Mens Casual Slim Fit"                                                  | "Mens Casual Slim Fit"                                                 |
+      | "Mens Casual Premium Slim Fit T-Shirts"                                 | "Mens Casual Premium Slim Fit T-Shirts"                                |
       | "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket" | "Lock and Love Womens Removable Hooded Faux Leather Moto Biker Jacket" |
       | "Pierced Owl Rose Gold Plated Stainless Steel Double"                   | "Pierced Owl Rose Gold Plated Stainless Steel Double"                  |
       | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                   | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                  |
