@@ -68,7 +68,7 @@ public class HomePageStepDefs {
     }
 
     @When("the user click on the {string} link on the top of the page")
-    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink){
+    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink) {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
     }
 
@@ -134,5 +134,17 @@ public class HomePageStepDefs {
         WebElement aligned = driver.findElement(By.xpath("/html/body"));
         boolean display = aligned.isDisplayed();
         Assertions.assertTrue(display);
+    }
+
+    // Samuel
+    @When("user clicks on {string} button on the start page")
+    public void userClicksOnButtonOnTheStartPage(String allProductsButton) {
+        driver.findElement(By.xpath("//button[text()= '" + allProductsButton + "' ]")).click();
+    }
+
+    // Samuel
+    @Then("user should be redirected to {string} page")
+    public void userShouldBeRedirectedToPage(String pageTitle) {
+        Assertions.assertEquals(pageTitle, driver.getTitle(),"Page title does not match");
     }
 }
