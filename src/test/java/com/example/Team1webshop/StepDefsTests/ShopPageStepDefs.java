@@ -21,13 +21,13 @@ public class ShopPageStepDefs {
         this.driver = Hooks.getDriver();
     }
 
-    @When("user clicks on Add to cart button")
+    @When("user clicks on Add to cart button") // Semih
     public void user_clicks_on_add_to_cart_button() {
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[1]")).click();
 
     }
 
-    @Then("product should be added to the cart")
+    @Then("product should be added to the cart") //Semih
     public void product_should_be_added_to_the_cart() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
         String actualProductTitle = driver.findElement(By.xpath("//*[@class='my-0 w-75']")).getText();
@@ -35,12 +35,12 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(actualProductTitle, expectedProductTitle);
     }
 
-    @When("user clicks on checkout button")
+    @When("user clicks on checkout button") //Semih
     public void user_clicks_on_checkout_button() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
     }
 
-    @Then("user should be landed to checkout page")
+    @Then("user should be landed to checkout page") //Semih
     public void user_should_be_landed_to_checkout_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout";
         String actualUrl = driver.getCurrentUrl();
