@@ -91,11 +91,14 @@ public class CheckoutPageStepDefs {
     // Samuel
     @When("User adds a specific product to the cart {string}")
     public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
+        actions = new Actions(driver);
         List<WebElement> productCards = driver.findElements(By.className("card-body"));
         for (WebElement productCard : productCards) {
             WebElement productTitleElement = productCard.findElement(By.className("card-title"));
             String productTitle = productTitleElement.getText();
             if (productTitle.equals(addedProduct)) {
+                actions.moveToElement(productCard);
+                actions.perform();
                 productCard.findElement(By.className("btn-primary")).click();
             }
         }
