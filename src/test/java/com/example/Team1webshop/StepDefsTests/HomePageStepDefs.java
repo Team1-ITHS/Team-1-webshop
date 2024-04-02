@@ -14,6 +14,7 @@ public class HomePageStepDefs {
         this.driver = Hooks.getDriver();
     }
 
+    //Samuel
     @Given("User has navigated to the start page")
     public void user_has_navigated_to_the_start_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
@@ -25,61 +26,72 @@ public class HomePageStepDefs {
         Assertions.assertEquals(pageTitle, driver.getTitle());
     }
 
-    @When("the user clicks on the {string} link") //Mia
+    //Mia
+    @When("the user clicks on the {string} link")
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
 
-    @Then("the user should be redirected to {string}") //Mia
+    //Mia
+    @Then("the user should be redirected to {string}")
     public void the_user_should_be_redirected_to(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
-    @When("the user clicks on the {string} links") //Mia
+    //Mia
+    @When("the user clicks on the {string} links")
     public void the_user_clicks_on_the_links(String CheckoutLink) {
         driver.findElement(By.linkText(CheckoutLink)).click();
     }
 
-    @Then("the user should be redirected too {string}") //Mia
+    //Mia
+    @Then("the user should be redirected too {string}")
     public void the_user_should_be_redirected_too(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
-    @When("the user click on the {string} link") //Mia
+    //Mia
+    @When("the user click on the {string} link")
     public void the_user_click_on_the_link(String aboutLink) {
         //To be added when you can click about link
         //driver.findElement(By.linkText(aboutLink)).click();
     }
 
+    //Mia
     @When("the user click on the {string} link on the top of the page")
-    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink){
+    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink) {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
     }
 
-    @Then("the users should be redirected to {string}") //Mia
+    //Mia
+    @Then("the users should be redirected to {string}")
     public void the_users_should_be_redirected_to(String expected_Url) {
         String actual_Url = driver.getCurrentUrl();
         Assertions.assertEquals(expected_Url, actual_Url, "Expected URL: " + expected_Url + ", Actual URL: " + actual_Url);
     }
 
-    @When("the user click on the {string} link in the bottom of the page")//Mia
+    //Mia
+    @When("the user click on the {string} link in the bottom of the page")
     public void the_user_click_on_the_link_in_the_bottom_of_the_page(String aboutLink_bottom) {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-muted' and text()='About'])[1]")).click();
     }
 
-    @Given("user is in the About page") //Mia
+    //Mia
+    @Given("user is in the About page")
     public void user_is_in_the_about_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/about");
     }
 
+    //Mia
     @When("the user click on the {string} button")
     public void the_user_click_on_the_button(String buttonLabel) {
         WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
         button.click();
     }
 
+    //Mia
     @Then("the users shold be redirected to {string}")
     public void the_users_shold_be_redirected_to(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
@@ -98,12 +110,14 @@ public class HomePageStepDefs {
         Assertions.assertTrue(driver.findElement(By.xpath("//h2[text()='Checkout form']")).isDisplayed(), "Element is not visible");
     }
 
-    @When("the user clicks on the Home link") //Divya
+    //Divya
+    @When("the user clicks on the Home link")
     public void the_user_click_on_the_Home_link() {
         WebElement home = driver.findElement(By.partialLinkText("Home"));
         home.click();
     }
 
+    //Divya
     @Then("the user should be directed to home page")
     public void the_user_should_be_directed_to_home_page() {
         String actualUrl = driver.getCurrentUrl();

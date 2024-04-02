@@ -1,20 +1,13 @@
 package com.example.Team1webshop.StepDefsTests;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShopPageStepDefs {
@@ -24,13 +17,15 @@ public class ShopPageStepDefs {
         this.driver = Hooks.getDriver();
     }
 
-    @When("user clicks on Add to cart button") // Semih
+    // Semih
+    @When("user clicks on Add to cart button")
     public void user_clicks_on_add_to_cart_button() {
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[1]")).click();
 
     }
 
-    @Then("product should be added to the cart") //Semih
+    // Semih
+    @Then("product should be added to the cart")
     public void product_should_be_added_to_the_cart() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
         String actualProductTitle = driver.findElement(By.xpath("//*[@class='my-0 w-75']")).getText();
@@ -38,38 +33,44 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(actualProductTitle, expectedProductTitle);
     }
 
-    @When("user clicks on checkout button") //Semih
+    // Semih
+    @When("user clicks on checkout button")
     public void user_clicks_on_checkout_button() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
     }
 
-    @Then("user should be landed to checkout page") //Semih
+    // Semih
+    @Then("user should be landed to checkout page")
     public void user_should_be_landed_to_checkout_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout";
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
-    @Given("The user clicks on the shop page") //divya
+    //divya
+    @Given("The user clicks on the shop page")
     public void setup() throws InterruptedException {
         WebElement shopButton = driver.findElement(By.xpath("/html//header//ul//a[@href='/products']"));
         shopButton.click();
         Thread.sleep(2000);
     }
 
-    @Then("The user is navigated to the shop page") //divya
+    //divya
+    @Then("The user is navigated to the shop page")
     public void I_should_be_navigated_to_Shop_page() {
         String navigated_url = driver.getCurrentUrl();
         Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/products", navigated_url);
     }
 
-    @When("user clicks on the mens clothing from shop page") //divya
+    //divya
+    @When("user clicks on the mens clothing from shop page")
     public void User_clicks_on_the_mens_clothing_from_shop_page() {
         WebElement filterMensClothing = driver.findElement(By.partialLinkText("Men's clothing"));
         filterMensClothing.click();
     }
 
-    @Then("Only mens clothing products must be visible") //divya
+    //divya
+    @Then("Only mens clothing products must be visible")
     public void only_mens_clothing_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement mens_clothing = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
@@ -78,12 +79,14 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("user clicks on the womens clothing from shop page")//divya
+    //divya
+    @When("user clicks on the womens clothing from shop page")
     public void user_clicks_on_the_womens_clothing_from_shop_page() {
         WebElement filterWomensClothing = driver.findElement(By.partialLinkText("Women's clothing"));
         filterWomensClothing.click();
     }
 
+    //divya
     @Then("Only womens clothing products must be visible")
     public void only_womens_clothing_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -93,12 +96,14 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("user clicks on the jewelery from shop page")//divya
+    //divya
+    @When("user clicks on the jewelery from shop page")
     public void user_clicks_on_the_jewelery_from_shop_page() {
         WebElement filterjewelery = driver.findElement(By.partialLinkText("Jewelery"));
         filterjewelery.click();
     }
 
+    //divya
     @Then("Only jewelery products must be visible")
     public void only_jewelery_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -108,12 +113,14 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(4, numberOfElements);
     }
 
-    @When("User clicks on the electronics from shop page")//divya
+    //divya
+    @When("User clicks on the electronics from shop page")
     public void user_clicks_on_the_electronics_from_shop_page() {
         WebElement filterelectronics = driver.findElement(By.partialLinkText("Electronics"));
         filterelectronics.click();
     }
 
+    //divya
     @Then("Only electronic products must be visible")
     public void only_electronic_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -123,12 +130,14 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    @When("User clicks on the all from shop page")//divya
+    //divya
+    @When("User clicks on the all from shop page")
     public void user_clicks_on_the_all_from_shop_page() {
         WebElement all = driver.findElement(By.partialLinkText("All"));
         all.click();
     }
 
+    //divya
     @Then("Only all products must be visible")
     public void only_all_products_must_be_visible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -138,18 +147,21 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(20, numberOfElements);
     }
 
-    @When("User enter a {string} in the search field")//divya
+    //divya
+    @When("User enter a {string} in the search field")
     public void i_enter_a_in_the_search_field(String string) {
         WebElement searchField = driver.findElement(By.id("search"));
         searchField.sendKeys("Mens Casual");
     }
 
+    //divya
     @Then("Relevant results are displayed")
     public void relevant_results_are_displayed() {
         List<WebElement> searchResults = driver.findElements(By.className("card-body"));
         Assertions.assertTrue((int) searchResults.size() > 0);
     }
 
+    //divya
     @And("Results contain the keyword {string}")
     public void results_contain_the_keyword(String string) {
         List<WebElement> searchResults = driver.findElements(By.className("card-body"));

@@ -82,7 +82,7 @@ public class CheckoutPageFormStepDefs {
 
         Assertions.assertTrue(isErrorMessageDisplayed, "No error message is being displayed for required text field");
     }
-
+    //divya
     @Given("user fills in the form with invalid email {string} {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")
     public void user_fills_in_the_form_with_invalid_email(String firstName, String lastName, String email, String address, String country, String city, String zipCode, String ccName, String ccNumber, String expDate, String cvv) {
         driver.findElement(By.id("firstName")).sendKeys(firstName);
@@ -98,7 +98,6 @@ public class CheckoutPageFormStepDefs {
         driver.findElement(By.id("cc-cvv")).sendKeys(cvv);
     }
 
-
     @Then("user should be notified with an error message")
     public void error_message_display() {
         String error_message = "";
@@ -113,7 +112,7 @@ public class CheckoutPageFormStepDefs {
         //String error_message = invalid_feedback.getText();
         Assertions.assertEquals("Please enter a valid email address for shipping updates.", error_message);
     }
-
+    //Semih
     @When("User select debit card as a payment method")
     public void user_select_debit_card_as_a_payment_method() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -121,7 +120,7 @@ public class CheckoutPageFormStepDefs {
         Thread.sleep(2);
         driver.findElement(By.xpath("(//input[@type='radio'])[2]")).click();
     }
-
+    //Semih
     @When("user clicks on continue to checkout")
     public void user_clicks_on_continue_to_checkout() throws InterruptedException {
         WebElement checkoutButton = driver.findElement(By.xpath("//button[contains(text(), 'Continue to checkout')]"));
@@ -129,13 +128,13 @@ public class CheckoutPageFormStepDefs {
         js.executeScript("arguments[0].scrollIntoView();", checkoutButton);
         checkoutButton.click();
     }
-
+    //Semih
     @When("User select paypal as a payment method")
     public void user_select_paypal_as_a_payment_method() {
         driver.findElement(By.xpath("(//input[@type='radio'])[3]")).click();
 
     }
-
+    //Semih
     @Then("User should be able proceed paypal payment")
     public void user_should_be_able_proceed_paypal_payment() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout?paymentMethod=paypal";
@@ -143,14 +142,14 @@ public class CheckoutPageFormStepDefs {
         Assertions.assertEquals(expectedUrl, actualUrl);
 
     }
-
+    //Semih
     @Then("User should be able proceed credit card payment")
     public void user_should_be_able_proceed_credit_card_payment() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout?paymentMethod=on";
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
-
+    //Semih
     @Then("User should be able proceed debit card payment")
     public void user_should_be_able_proceed_debit_card_payment() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout?paymentMethod=on";
@@ -158,6 +157,4 @@ public class CheckoutPageFormStepDefs {
         Assertions.assertEquals(expectedUrl, actualUrl);
 
     }
-
-
 }

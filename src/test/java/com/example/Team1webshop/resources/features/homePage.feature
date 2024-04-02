@@ -44,7 +44,7 @@ Feature: Start page of The Shop web app
   Scenario: Click on the To all products button on About-site
     Given user is in the About page
     When the user click on the "To all products" button
-    Then the users shold be redirected to "https://webshop-agil-testautomatiserare.netlify.app/products.html"
+    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/products.html"
 
     #divya
   Scenario: Click on the Home link
