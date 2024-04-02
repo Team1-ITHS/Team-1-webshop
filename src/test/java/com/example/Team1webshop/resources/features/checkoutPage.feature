@@ -23,10 +23,11 @@ Feature: Checkout page of The Shop web app
     And User has navigated to the checkout page
     Then User should see same product on checkout page <actualProduct>
     Examples:
-      | addedProduct                                            | actualProduct                                           |
-      | "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops" | "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops" |
-      | "Mens Casual Premium Slim Fit T-Shirts"                 | "Mens Casual Premium Slim Fit T-Shirts"                 |
-      | "Mens Cotton Jacket"                                    | "Mens Cotton Jacket"                                    |
+      | addedProduct                                                                  | actualProduct                                                                |
+      | "Mens Casual Premium Slim Fit T-Shirts"                                       | "Mens Casual Premium Slim Fit T-Shirts"                                      |
+      | "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet" | "John Hardy Womens Legends Naga Gold & Silver Dragon Station Chain Bracelet" |
+      | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                         | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                        |
+      | "Opna Women's Short Sleeve Moisture"                                          | "Opna Womens Short Sleeve Moisture"                                          |
 
     #Samuel
   Scenario: User should see correct total price on checkout page when adding multiple products

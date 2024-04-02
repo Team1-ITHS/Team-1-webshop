@@ -13,12 +13,11 @@ public class Hooks {
 
     @Before
     public void setup() {
-        // System.setProperty("webdriver.chrome.driver", "src/test/java/com/example/CucumberSelenium/drivers/chromedriver.exe"); // Provide path to chromedriver
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--window-size=1920,1080");
-//        options.addArguments("--incognito");
-//      options.addArguments("--start-maximized");
+        options.addArguments("--headless");                     // Uncomment this for Github Actions
+        options.addArguments("--window-size=1920,1080");        // Uncomment this for Github Actions
+//        options.addArguments("--incognito");                    // Uncomment this when testing locally
+//        options.addArguments("--start-maximized");              // Uncomment this when testing locally
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
