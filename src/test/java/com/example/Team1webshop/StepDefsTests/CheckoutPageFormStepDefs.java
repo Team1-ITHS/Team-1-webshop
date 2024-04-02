@@ -80,7 +80,9 @@ public class CheckoutPageFormStepDefs {
             }
         }
 
-        Assertions.assertTrue(isErrorMessageDisplayed, "No error message is being displayed for required text field");
+
+        Assertions.assertTrue(isErrorMessageDisplayed,"No error message is being displayed for required text field");
+
     }
     //divya
     @Given("user fills in the form with invalid email {string} {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")

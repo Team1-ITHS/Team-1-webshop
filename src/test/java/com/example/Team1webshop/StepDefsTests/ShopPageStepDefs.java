@@ -130,8 +130,7 @@ public class ShopPageStepDefs {
         Assertions.assertEquals(6, numberOfElements);
     }
 
-    //divya
-    @When("User clicks on the all from shop page")
+    @When("User clicks on the all from shop page")//divya
     public void user_clicks_on_the_all_from_shop_page() {
         WebElement all = driver.findElement(By.partialLinkText("All"));
         all.click();
@@ -146,12 +145,11 @@ public class ShopPageStepDefs {
         int numberOfElements = all_products.size();
         Assertions.assertEquals(20, numberOfElements);
     }
-
-    //divya
-    @When("User enter a {string} in the search field")
-    public void i_enter_a_in_the_search_field(String string) {
+     //divya
+    @When("User searches with specific word in the search field {string}")
+    public void i_enter_a_in_the_search_field(String keyword) {
         WebElement searchField = driver.findElement(By.id("search"));
-        searchField.sendKeys("Mens Casual");
+        searchField.sendKeys(keyword);
     }
 
     //divya
@@ -163,11 +161,11 @@ public class ShopPageStepDefs {
 
     //divya
     @And("Results contain the keyword {string}")
-    public void results_contain_the_keyword(String string) {
+    public void results_contain_the_keyword(String keyword) {
         List<WebElement> searchResults = driver.findElements(By.className("card-body"));
         boolean keywordFound = false;
         for (WebElement result : searchResults) {
-            if (result.getText().contains("Mens Casual")) {
+            if (result.getText().toLowerCase().contains(keyword.toLowerCase())) {
                 keywordFound = true;
                 break;
             }

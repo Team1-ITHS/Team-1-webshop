@@ -28,6 +28,21 @@ public class HomePageStepDefs {
 
     //Mia
     @When("the user clicks on the {string} link")
+    @Then("the heading should be {string}") //divya
+    public void the_heading_should_be(String heading) {
+        WebElement mainHeading = driver.findElement(By.tagName("h2"));
+        String actualText = mainHeading.getText();
+        Assertions.assertEquals(heading, actualText);
+    }
+
+    @Then("the subtext should be {string}") //divya
+    public void the_subtext_should_be(String subtext) {
+        WebElement mainHeading = driver.findElement(By.tagName("p"));
+        String actualText = mainHeading.getText();
+        Assertions.assertEquals(subtext, actualText);
+    }
+
+    @When("the user clicks on the {string} link") //Mia
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
@@ -134,5 +149,17 @@ public class HomePageStepDefs {
         WebElement aligned = driver.findElement(By.xpath("/html/body"));
         boolean display = aligned.isDisplayed();
         Assertions.assertTrue(display);
+    }
+
+    // Samuel
+    @When("user clicks on {string} button on the start page")
+    public void userClicksOnButtonOnTheStartPage(String allProductsButton) {
+        driver.findElement(By.xpath("//button[text()= '" + allProductsButton + "' ]")).click();
+    }
+
+    // Samuel
+    @Then("user should be redirected to {string} page")
+    public void userShouldBeRedirectedToPage(String pageTitle) {
+        Assertions.assertEquals(pageTitle, driver.getTitle(),"Page title does not match");
     }
 }
