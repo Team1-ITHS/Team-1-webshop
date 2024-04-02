@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class CheckoutPageStepDefs {
 
     private final WebDriver driver;
+    Actions actions;
     WebDriverWait wait;
 
     public CheckoutPageStepDefs() {
@@ -110,13 +112,19 @@ public class CheckoutPageStepDefs {
     // Samuel
     @When("User adds some sample products to cart")
     public void userAddsSomeSampleProductsToCart() {
+        actions = new Actions(driver);
+
         String[] productTitles = {
                 "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-                "Mens Casual Premium Slim Fit T-Shirts",
-                "Mens Cotton Jacket",
+                "Pierced Owl Rose Gold Plated Stainless Steel Double",
+                "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+                "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
         };
         for (String product : productTitles) {
-            driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button")).click();
+            WebElement element = driver.findElement(By.xpath("//h3[text()='" + product + "']/following-sibling::button"));
+            actions.moveToElement(element);
+            actions.perform();
+            element.click();
         }
     }
 
@@ -237,6 +245,6 @@ public class CheckoutPageStepDefs {
         String nextElementText = nextElement.getText();
         String totalPriceTemp = nextElementText.substring(1);
         float totalPrice = Float.parseFloat(totalPriceTemp);
-        Assertions.assertEquals(188.24F, totalPrice, "Total price is not correct");
+        Assertions.assertEquals(269.93F, totalPrice, "Total price is not correct");
     }
 }

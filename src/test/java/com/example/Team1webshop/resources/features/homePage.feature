@@ -63,3 +63,8 @@ Feature: Start page of The Shop web app
   Scenario: Minimize the screen to check the alignment of elements
     When user minimizes the screen
     Then the application should be aligned automatically accordingly
+
+    #Samuel
+  Scenario: User should be redirected to shop page when clicking on "All products" button
+    When user clicks on "All products" button on the start page
+    Then user should be redirected to "The Shop | Products" page
