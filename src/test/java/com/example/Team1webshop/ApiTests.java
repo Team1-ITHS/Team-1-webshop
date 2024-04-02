@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
 public class ApiTests {
+
     private Response response; // Deklarerar response som en privat instansvariabelgit
 
     // Samuel
@@ -130,6 +131,7 @@ public class ApiTests {
                 get("/products/categories/electronics").
                 then().statusCode(200).body("[0].title", equalTo("WD 2TB Elements Portable External Hard Drive - USB 3.0"));
     }
+
     //Semih
     @Test
     @DisplayName("Check endpoint status code of 'products' and number products")
@@ -140,6 +142,7 @@ public class ApiTests {
                 .then().statusCode(200).body("[19].id", equalTo(20));
 
     }
+
     //Semih
     @Test
     @DisplayName("Check endpoint status code for specific product and products prodct details")
@@ -151,7 +154,6 @@ public class ApiTests {
         String actualProductDetails = response.body().asString();
         String expectedProductDetails= "\"id\":1,\"title\":\"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops\",\"price\":109.95,\"category\":\"men's clothing\",\"description\":\"Fin väska me plats för dator\",\"image\":\"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg\"";
         Assertions.assertNotEquals(expectedProductDetails,actualProductDetails); // that assertion should be updated as a assertEqual when each product has endpoint
-
     }
 
     // Samuel
@@ -193,7 +195,6 @@ public class ApiTests {
         int expectedStatusCode = 404; // Declare the expected status code,  404, not found
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
     }
-
 
     //divya
     @Test

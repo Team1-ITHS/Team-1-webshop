@@ -23,10 +23,10 @@ Feature: Checkout page of The Shop web app
     And User has navigated to the checkout page
     Then User should see same product on checkout page <actualProduct>
     Examples:
-      | addedProduct                                                                  | actualProduct                                                                 |
-      | "Mens Casual Premium Slim Fit T-Shirts"                                       | "Mens Casual Premium Slim Fit T-Shirts"                                       |
+      | addedProduct                                                                  | actualProduct                                                                |
+      | "Mens Casual Premium Slim Fit T-Shirts"                                       | "Mens Casual Premium Slim Fit T-Shirts"                                      |
       | "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet" | "John Hardy Womens Legends Naga Gold & Silver Dragon Station Chain Bracelet" |
-      | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                         | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                         |
+      | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                         | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                        |
       | "Opna Women's Short Sleeve Moisture"                                          | "Opna Womens Short Sleeve Moisture"                                          |
 
     #Samuel
