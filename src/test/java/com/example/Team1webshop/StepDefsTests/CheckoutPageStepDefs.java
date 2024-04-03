@@ -16,7 +16,7 @@ public class CheckoutPageStepDefs {
 
     private final WebDriver driver;
 
-    private static Actions actions;
+    Actions actions;
 
     public CheckoutPageStepDefs() {
         this.driver = Hooks.getDriver();
