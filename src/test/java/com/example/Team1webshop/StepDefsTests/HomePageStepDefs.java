@@ -26,15 +26,15 @@ public class HomePageStepDefs {
         Assertions.assertEquals(pageTitle, driver.getTitle());
     }
 
-    //Mia
-    @When("the user clicks on the {string} link")
-    @Then("the heading should be {string}") //divya
+    //Divya
+    @Then("the heading should be {string}")
     public void the_heading_should_be(String heading) {
         WebElement mainHeading = driver.findElement(By.tagName("h2"));
         String actualText = mainHeading.getText();
         Assertions.assertEquals(heading, actualText);
     }
 
+    //Divya
     @Then("the subtext should be {string}") //divya
     public void the_subtext_should_be(String subtext) {
         WebElement mainHeading = driver.findElement(By.tagName("p"));
@@ -42,47 +42,41 @@ public class HomePageStepDefs {
         Assertions.assertEquals(subtext, actualText);
     }
 
-    @When("the user clicks on the {string} link") //Mia
-    public void the_user_clicks_on_the_link(String shopLink) {
+    //Mia
+    @When("the user clicks on the shop link {string}") //Mia
+    public void the_user_clicks_on_the_shop_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
 
     //Mia
-    @Then("the user should be redirected to {string}")
-    public void the_user_should_be_redirected_to(String expectedUrl) {
+    @Then("the user should be redirected to the products page {string}")
+    public void the_user_should_be_redirected_to_the_products_page(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     //Mia
-    @When("the user clicks on the {string} links")
-    public void the_user_clicks_on_the_links(String CheckoutLink) {
+    @When("the user clicks on the checkout link {string}")
+    public void the_user_clicks_on_the_checkout_link(String CheckoutLink) {
         driver.findElement(By.linkText(CheckoutLink)).click();
     }
 
     //Mia
-    @Then("the user should be redirected too {string}")
-    public void the_user_should_be_redirected_too(String expectedUrl) {
+    @Then("the user should be redirected to the checkout page {string}")
+    public void the_user_should_be_redirected_to_the_checkout_page(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     //Mia
-    @When("the user click on the {string} link")
-    public void the_user_click_on_the_link(String aboutLink) {
-        //To be added when you can click about link
-        //driver.findElement(By.linkText(aboutLink)).click();
-    }
-
-    //Mia
-    @When("the user click on the {string} link on the top of the page")
-    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink) {
+    @When("the user click on the about link {string} on the top of the page")
+    public void the_user_click_on_the_about_link_on_the_top_of_the_page(String aboutLink) {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
     }
 
     //Mia
-    @Then("the users should be redirected to {string}")
-    public void the_users_should_be_redirected_to(String expected_Url) {
+    @Then("the users should be redirected to the about page {string}")
+    public void the_users_should_be_redirected_to_the_about_page(String expected_Url) {
         String actual_Url = driver.getCurrentUrl();
         Assertions.assertEquals(expected_Url, actual_Url, "Expected URL: " + expected_Url + ", Actual URL: " + actual_Url);
     }
@@ -100,22 +94,15 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user click on the {string} button")
-    public void the_user_click_on_the_button(String buttonLabel) {
+    @When("the user click on the To all products-button {string}")
+    public void the_user_click_on_the_to_all_products_button(String buttonLabel) {
         WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
         button.click();
     }
 
-    //Mia
-    @Then("the users shold be redirected to {string}")
-    public void the_users_shold_be_redirected_to(String expectedUrl) {
-        String actualUrl = driver.getCurrentUrl();
-        Assertions.assertEquals(expectedUrl, actualUrl);
-    }
-
     // Samuel
     @When("the user click on the Checkout button")
-    public void theUserClickOnTheButton() {
+    public void theUserClickOnTheCheckoutButton() {
         driver.findElement(By.xpath("//a[contains(@class, 'btn-warning')]")).click();
     }
 
@@ -139,11 +126,13 @@ public class HomePageStepDefs {
         Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/", actualUrl);
     }
 
+    //Divya
     @When("user minimizes the screen")
     public void user_minimizes_the_screen() {
         driver.manage().window().minimize();
     }
 
+    //Divya
     @Then("the application should be aligned automatically accordingly")
     public void the_application_should_be_aligned_automatically_accordingly() {
         WebElement aligned = driver.findElement(By.xpath("/html/body"));
