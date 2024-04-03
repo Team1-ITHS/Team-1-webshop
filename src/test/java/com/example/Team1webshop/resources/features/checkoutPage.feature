@@ -25,7 +25,7 @@ Feature: Checkout page of The Shop web app
     Examples:
       | addedProduct                                                                  | actualProduct                                                                |
       | "Mens Casual Premium Slim Fit T-Shirts"                                       | "Mens Casual Premium Slim Fit T-Shirts"                                      |
-      | "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet" | "John Hardy Womens Legends Naga Gold & Silver Dragon Station Chain Bracelet" |
+      | "Pierced Owl Rose Gold Plated Stainless Steel Double"                         | "Pierced Owl Rose Gold Plated Stainless Steel Double"                        |
       | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                         | "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"                        |
       | "Opna Women's Short Sleeve Moisture"                                          | "Opna Womens Short Sleeve Moisture"                                          |
 
