@@ -26,15 +26,15 @@ public class HomePageStepDefs {
         Assertions.assertEquals(pageTitle, driver.getTitle());
     }
 
-    //Mia
-    @When("the user clicks on the {string} link")
-    @Then("the heading should be {string}") //divya
+    //Divya
+    @Then("the heading should be {string}")
     public void the_heading_should_be(String heading) {
         WebElement mainHeading = driver.findElement(By.tagName("h2"));
         String actualText = mainHeading.getText();
         Assertions.assertEquals(heading, actualText);
     }
 
+    //Divya
     @Then("the subtext should be {string}") //divya
     public void the_subtext_should_be(String subtext) {
         WebElement mainHeading = driver.findElement(By.tagName("p"));
@@ -42,6 +42,7 @@ public class HomePageStepDefs {
         Assertions.assertEquals(subtext, actualText);
     }
 
+    //Mia
     @When("the user clicks on the {string} link") //Mia
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
@@ -139,11 +140,13 @@ public class HomePageStepDefs {
         Assertions.assertEquals("https://webshop-agil-testautomatiserare.netlify.app/", actualUrl);
     }
 
+    //Divya
     @When("user minimizes the screen")
     public void user_minimizes_the_screen() {
         driver.manage().window().minimize();
     }
 
+    //Divya
     @Then("the application should be aligned automatically accordingly")
     public void the_application_should_be_aligned_automatically_accordingly() {
         WebElement aligned = driver.findElement(By.xpath("/html/body"));
