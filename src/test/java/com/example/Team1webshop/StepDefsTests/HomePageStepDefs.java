@@ -44,38 +44,38 @@ public class HomePageStepDefs {
 
     //Mia
     @When("the user clicks on the shop link {string}") //Mia
-    public void the_user_clicks_on_the_link(String shopLink) {
+    public void the_user_clicks_on_the_shop_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
 
     //Mia
-    @Then("the user should be redirected to {string}")
-    public void the_user_should_be_redirected_to(String expectedUrl) {
+    @Then("the user should be redirected to the products page {string}")
+    public void the_user_should_be_redirected_to_the_products_page(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     //Mia
     @When("the user clicks on the checkout link {string}")
-    public void the_user_clicks_on_the_links(String CheckoutLink) {
+    public void the_user_clicks_on_the_checkout_link(String CheckoutLink) {
         driver.findElement(By.linkText(CheckoutLink)).click();
     }
 
     //Mia
-    @Then("the user should be redirected too {string}")
-    public void the_user_should_be_redirected_too(String expectedUrl) {
+    @Then("the user should be redirected to the checkout page {string}")
+    public void the_user_should_be_redirected_to_the_checkout_page(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     //Mia
-    @When("the user click on the {string} link on the top of the page")
-    public void the_user_click_on_the_link_on_the_top_of_the_page(String aboutLink) {
+    @When("the user click on the about link {string} on the top of the page")
+    public void the_user_click_on_the_about_link_on_the_top_of_the_page(String aboutLink) {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
     }
 
     //Mia
-    @Then("the users should be redirected to {string}")
+    @Then("the users should be redirected to the about page {string}")
     public void the_users_should_be_redirected_to(String expected_Url) {
         String actual_Url = driver.getCurrentUrl();
         Assertions.assertEquals(expected_Url, actual_Url, "Expected URL: " + expected_Url + ", Actual URL: " + actual_Url);
@@ -94,17 +94,10 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user click on the {string} button")
-    public void the_user_click_on_the_button(String buttonLabel) {
+    @When("the user click on the To all products-button {string}")
+    public void the_user_click_on_the_to_all_products_button(String buttonLabel) {
         WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
         button.click();
-    }
-
-    //Mia
-    @Then("the users shold be redirected to {string}")
-    public void the_users_shold_be_redirected_to(String expectedUrl) {
-        String actualUrl = driver.getCurrentUrl();
-        Assertions.assertEquals(expectedUrl, actualUrl);
     }
 
     // Samuel
