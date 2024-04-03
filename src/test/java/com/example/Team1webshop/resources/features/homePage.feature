@@ -33,12 +33,12 @@ Feature: Start page of The Shop web app
 
     #divya
   Scenario: Click on the About link on the top of the page
-    When the user click on the about link "About" on the top of the page
+    When the user click on the about link on the top of the page
     Then the users should be redirected to the about page "https://webshop-agil-testautomatiserare.netlify.app/about"
 
     #Mia
   Scenario: Click on the About link in the bottom of the page
-    When the user click on the "About" link in the bottom of the page
+    When the user click on the about link in the bottom of the page
     Then the users should be redirected to the about page "https://webshop-agil-testautomatiserare.netlify.app/about"
 
     #Mia

@@ -43,7 +43,7 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user clicks on the shop link {string}") //Mia
+    @When("the user clicks on the shop link {string}")
     public void the_user_clicks_on_the_shop_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
@@ -69,8 +69,8 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user click on the about link {string} on the top of the page")
-    public void the_user_click_on_the_about_link_on_the_top_of_the_page(String aboutLink) {
+    @When("the user click on the about link on the top of the page")
+    public void the_user_click_on_the_about_link_on_the_top_of_the_page() {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-white' and text()='About'])[1]")).click(); //the about link on top with white text
     }
 
@@ -82,8 +82,8 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user click on the {string} link in the bottom of the page")
-    public void the_user_click_on_the_link_in_the_bottom_of_the_page(String aboutLink_bottom) {
+    @When("the user click on the about link in the bottom of the page")
+    public void the_user_click_on_the_link_in_the_bottom_of_the_page() {
         driver.findElement(By.xpath("(//a[@class='nav-link px-2 text-muted' and text()='About'])[1]")).click();
     }
 
