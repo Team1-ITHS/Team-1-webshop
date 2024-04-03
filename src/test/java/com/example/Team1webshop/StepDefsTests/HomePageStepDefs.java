@@ -43,7 +43,7 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user clicks on the {string} link") //Mia
+    @When("the user clicks on the shop link {string}") //Mia
     public void the_user_clicks_on_the_link(String shopLink) {
         driver.findElement(By.linkText(shopLink)).click();
     }
@@ -56,7 +56,7 @@ public class HomePageStepDefs {
     }
 
     //Mia
-    @When("the user clicks on the {string} links")
+    @When("the user clicks on the checkout link {string}")
     public void the_user_clicks_on_the_links(String CheckoutLink) {
         driver.findElement(By.linkText(CheckoutLink)).click();
     }
@@ -66,13 +66,6 @@ public class HomePageStepDefs {
     public void the_user_should_be_redirected_too(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertEquals(expectedUrl, actualUrl);
-    }
-
-    //Mia
-    @When("the user click on the {string} link")
-    public void the_user_click_on_the_link(String aboutLink) {
-        //To be added when you can click about link
-        //driver.findElement(By.linkText(aboutLink)).click();
     }
 
     //Mia

@@ -23,20 +23,13 @@ Feature: Start page of The Shop web app
 
     #Mia
   Scenario: Click on the Shop link
-    When the user clicks on the "Shop" link
+    When the user clicks on the shop link "Shop"
     Then the user should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/products"
 
     #Mia
   Scenario: Click on the Checkout link
-    When the user clicks on the "Checkout" links
+    When the user clicks on the checkout link "Checkout"
     Then the user should be redirected too "https://webshop-agil-testautomatiserare.netlify.app/checkout"
-
-    #Mia
-  Scenario: Click on the About link
-    When the user click on the "About" link
-    Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/"
-    #when About-site is available change to row below
-    #Then the users should be redirected to "https://webshop-agil-testautomatiserare.netlify.app/about"
 
     #divya
   Scenario: Click on the About link on the top of the page
